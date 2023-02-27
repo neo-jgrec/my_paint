@@ -1,0 +1,9 @@
+bootstrap
+*.o
+my_paint
+.vscode
+tests
+oui
+example*
+report
+
