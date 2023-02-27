@@ -7,6 +7,8 @@
 
 SRC		=	src/main.c
 
+SRC		+=	src/init/game.c
+
 OBJ		=	$(SRC:.c=.o)
 
 NAME	=	my_paint
