@@ -13,13 +13,17 @@ static void init_board(game_t *game, char *filepath)
     game->board->size = (sfVector2f){400, 300};
     game->board->pos = (sfVector2f){266, 150};
     game->board->scale = (sfVector2f){1, 1};
-    game->board->mouse_pos = (sfVector2f){0, 0};
+    game->board->color = sfBlack;
+    game->board->size_brush = 10;
+    game->board->brush = create_circle_shape(game->board->size_brush,
+    game->board->color);
+    game->board->brush_type = CIRCLE;
     if (filepath != NULL)
-        game->board->image = sfImage_createFromFile(filepath);
+        IMAGE = sfImage_createFromFile(filepath);
     else
-        game->board->image = sfImage_createFromColor(
+        IMAGE = sfImage_createFromColor(
         game->board->size.x, game->board->size.y, sfWhite);
-    game->board->texture = sfTexture_createFromImage(game->board->image,
+    game->board->texture = sfTexture_createFromImage(IMAGE,
     NULL);
     game->board->sprite = sfSprite_create();
     sfSprite_setTexture(game->board->sprite, game->board->texture, sfTrue);
@@ -29,9 +33,9 @@ static void init_board(game_t *game, char *filepath)
 
 static void add_navbar_button(game_t *game)
 {
-    char *button_name[] = {"FILE", "EDIT", "HELP"};
-    sfVector2f button_pos[] = {{0, 0}, {100, 0}, {200, 0}};
-    sfVector2f button_size[] = {{100, 50}, {100, 50}, {100, 50}};
+    char *button_name[] = {"FILE", "EDIT", "HELP", NULL};
+    sfVector2f button_pos[] = {{0, 0}, {100, 0}, {200, 0}, {0, 0}};
+    sfVector2f button_size[] = {{100, 50}, {100, 50}, {100, 50}, {0, 0}};
     button_t *button = malloc(sizeof(button_t));
 
     for (int i = 0; button_name[i]; i++) {

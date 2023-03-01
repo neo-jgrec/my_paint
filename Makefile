@@ -9,6 +9,15 @@ SRC		=	src/main.c
 
 SRC		+=	src/init/game.c
 
+SRC		+=	src/shape/shape_create.c \
+			src/shape/shape_utils.c
+
+SRC		+=	src/shape/draw/draw_on_image.c \
+			src/shape/draw/circle.c
+
+SRC		+=	src/scene/scene.c\
+			src/scene/main_scene.c
+
 OBJ		=	$(SRC:.c=.o)
 
 NAME	=	my_paint
