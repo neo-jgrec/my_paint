@@ -39,6 +39,17 @@
         EXIT
     } scene_t;
 
+    typedef enum {
+        FILE_PANEL,
+        EDIT_PANEL,
+        HELP
+    } wich_panel_t;
+
+    typedef struct button_textures_s {
+        sfTexture *hover;
+        sfTexture *clicked;
+        sfTexture *idle;
+    } button_textures_t;
 
     typedef struct button_s {
         char *name;
@@ -46,20 +57,11 @@
         sfVector2f size;
         sfRectangleShape *shape;
         sfTexture *texture;
-        button_state_t state;
+        button_state_t *state;
+        button_textures_t *textures;
         bool (*callback)(void *self, void *opt);
+        TAILQ_ENTRY(button_s) next;
     } button_t;
-
-    typedef struct button_list_s {
-        button_t *button;
-        TAILQ_ENTRY(button_list_s) next;
-    } button_list_t;
-
-    typedef enum wich_panel {
-        FILE_PANEL,
-        EDIT_PANEL,
-        HELP
-    } wich_panel_t;
 
     typedef struct board_s {
         sfImage *image;
@@ -76,7 +78,7 @@
         sfRenderWindow *window;
         sfEvent event;
         sfClock *clock;
-        button_list_t *buttons;
+        TAILQ_HEAD(, button_s) buttons;
         board_t *board;
     } game_t;
 
