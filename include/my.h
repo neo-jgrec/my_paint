@@ -143,5 +143,6 @@
 
     void main_loop(game_t *game);
     void draw_shape_on_sfimage(game_t *game);
+    void draw_rectangle_on_sfimage(game_t *game);
 
 #endif /* !MY_H_ */
