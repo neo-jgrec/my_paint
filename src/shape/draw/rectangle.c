@@ -7,7 +7,7 @@
 
 #include "my.h"
 
-static void draw_line_rectangle(game_t *game, int i, int size_y, sfVector2f size)
+static void draw_line_rectangle(game_t *game, int i, int size_y)
 {
     sfVector2f pos = game->board->mouse_pos;
     sfColor color = game->board->color;
@@ -47,7 +47,7 @@ void draw_rectangle_on_sfimage(game_t *game)
             sfImage_setPixel(IMAGE, pos.x + i, pos.y - j, color);
             sfImage_setPixel(IMAGE, pos.x - i, pos.y - j, color);
             }) : (0);
-            draw_line_rectangle(game, i, j, size);
+            draw_line_rectangle(game, i, j);
         }
     }
 }
