@@ -25,8 +25,8 @@
     #include <stdlib.h>
     #include <sys/queue.h>
 
+    #include "mars.h"
 
-    #define UNUSED __attribute__((unused))
 
     #define PI 3.14159265358979323846
 
@@ -140,5 +140,8 @@
     void update_main_scene(game_t *game);
 
     void draw_circle_on_sfimage(game_t *game);
+
+    void main_loop(game_t *game);
+    void draw_shape_on_sfimage(game_t *game);
 
 #endif /* !MY_H_ */
