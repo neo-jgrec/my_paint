@@ -22,8 +22,9 @@ CFLAGS					:=	-I include/ 							\
 							-I $(LIB_FOLDER)/my_arraylib/include/
 
 WFLAGS					:=	-Wall -Wextra -Wshadow -Wpointer-arith\
-							-Wcast-align -Wstrict-prototypes -Wmissing-prototypes\
-							-Wunreachable-code -Wno-unused-parameter -Wno-unused-variable\
+							-Wcast-align -Wstrict-prototypes\
+							-Wmissing-prototypes -Wunreachable-code\
+							-Wno-unused-parameter -Wno-unused-variable\
 							-Wno-unused-but-set-variable -Wno-unused-function
 
 LDLIBS 	:=	-lcsfml-graphics -lcsfml-audio -lcsfml-window -lcsfml-system -lm
