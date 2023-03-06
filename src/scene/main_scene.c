@@ -13,6 +13,14 @@ static void event_handler(game_t *game)
     (game->event.type == sfEvtKeyPressed &&
     game->event.key.code == sfKeyEscape))
         sfRenderWindow_close(game->window);
+
+    if (game->event.type == sfEvtResized) {
+        sfVector2u size = sfRenderWindow_getSize(game->window);
+        sfView_setSize(game->view, (sfVector2f) {size.x, size.y});
+        sfRenderWindow_setView(game->window, game->view);
+        game->board->size = (sfVector2f) {size.x - game->board->pos.x,
+        size.y - game->board->pos.y};
+    }
 }
 
 void update_main_scene(game_t *game)

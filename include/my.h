@@ -125,6 +125,7 @@
         sfClock *clock;
         TAILQ_HEAD(, button_s) buttons;
         board_t *board;
+        sfView *view;
     } game_t;
 
     void init_game(game_t *game, char *filepath);
@@ -133,7 +134,6 @@
     sfVector2f *convex_shape_get_points(sfConvexShape *shape);
     sfCircleShape *create_circle_shape(float radius, sfColor color);
     sfRectangleShape *create_rectangle_shape(sfVector2f size, sfColor color);
-    sfSprite *create_sprite_texture(char *filepath, sfVector2f size);
 
     bool is_hovering(sfVector2f pos, sfRenderWindow *window, sfVector2f size);
 

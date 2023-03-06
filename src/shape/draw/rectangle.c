@@ -33,7 +33,8 @@ static void draw_line_rectangle(game_t *game, int i, int size_y)
 void draw_rectangle_on_sfimage(game_t *game)
 {
     sfVector2f pos = game->board->mouse_pos;
-    sfVector2f size = sfRectangleShape_getSize((sfRectangleShape*)game->board->brush);
+    sfVector2f size = sfRectangleShape_getSize(\
+    (sfRectangleShape*)game->board->brush);
     sfColor color = game->board->color;
 
     for (int i = 0; i < size.x; i++) {
