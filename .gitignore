@@ -6,4 +6,4 @@ tests
 oui
 example*
 report
-
+*.a
