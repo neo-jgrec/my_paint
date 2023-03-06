@@ -25,12 +25,22 @@ void main_loop(game_t *game)
 
 int main(int ac, char **av)
 {
-    game_t *game;
+    game_t *game = malloc(sizeof(game_t));
+    int alpha = 0;
+    char *filepath = NULL;
 
-    if (ac > 2)
-        return (84);
-    game = malloc(sizeof(game_t));
-    init_game(game, (ac == 2) ? av[1] : NULL);
+    for (int i = 0; i < ac; i++) {
+        if (my_strcmp(av[i], "-a") == 0)
+            alpha = 1;
+        if (my_strcmp(av[i], "-f") == 0) {
+            filepath = av[i + 1];
+            (opendir(filepath)) ? ({
+                my_printf("Error: Invalid file path.\n");
+                return (84);
+            }) : (0);
+        }
+    }
+    init_game(game, filepath, alpha);
     main_loop(game);
     return (0);
 }

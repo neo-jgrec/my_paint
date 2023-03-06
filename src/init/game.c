@@ -7,9 +7,34 @@
 
 #include "my.h"
 
-static void init_board(game_t *game, char *filepath)
+static void fill_sfimage_alpha_with_white(sfImage *image)
 {
-    game->board = malloc(sizeof(board_t));
+    sfColor color;
+
+    for (size_t i = 0; i < sfImage_getSize(image).x; i++) {
+        for (size_t j = 0; j < sfImage_getSize(image).y; j++) {
+            color = sfImage_getPixel(image, i, j);
+            (color.a == 0) ? (sfImage_setPixel(image, i, j, sfWhite)) : (0);
+        }
+    }
+}
+
+static void init_image(game_t *game, char *filepath, int alpha)
+{
+    if (filepath != NULL) {
+        IMAGE = sfImage_createFromFile(filepath);
+        IMAGE = (IMAGE == NULL) ? (sfImage_createFromColor(
+        game->board->size.x, game->board->size.y, sfWhite)) : (IMAGE);
+        (alpha == 0) ? (fill_sfimage_alpha_with_white(IMAGE)) : (0);
+    } else {
+        (alpha == 0) ? (IMAGE = sfImage_createFromColor(game->board->size.x,
+        game->board->size.y, sfWhite)) : (IMAGE = sfImage_createFromColor(
+        game->board->size.x, game->board->size.y, sfTransparent));
+    }
+}
+
+static void init_board(game_t *game, char *filepath, int alpha)
+{
     game->board->size = (sfVector2f){400, 300};
     game->board->pos = (sfVector2f){266, 150};
     game->board->scale = (sfVector2f){1, 1};
@@ -17,13 +42,8 @@ static void init_board(game_t *game, char *filepath)
     game->board->size_brush = 10;
     game->board->brush = create_circle_shape(game->board->size_brush, sfBlack);
     game->board->brush_type = CIRCLE;
-    if (filepath != NULL)
-        IMAGE = sfImage_createFromFile(filepath);
-    else
-        IMAGE = sfImage_createFromColor(
-        game->board->size.x, game->board->size.y, sfWhite);
-    game->board->texture = sfTexture_createFromImage(IMAGE,
-    NULL);
+    init_image(game, filepath, alpha);
+    game->board->texture = sfTexture_createFromImage(IMAGE, NULL);
     game->board->sprite = sfSprite_create();
     sfSprite_setTexture(game->board->sprite, game->board->texture, sfTrue);
     sfSprite_setPosition(game->board->sprite, game->board->pos);
@@ -50,7 +70,7 @@ static void add_navbar_button(game_t *game)
     }
 }
 
-void init_game(game_t *game, char *filepath)
+void init_game(game_t *game, char *filepath, int alpha)
 {
     game->scene = MAIN;
     game->window = sfRenderWindow_create((sfVideoMode){800, 600, 32},
@@ -62,7 +82,8 @@ void init_game(game_t *game, char *filepath)
     sfRenderWindow_hasFocus(game->window);
     sfRenderWindow_setVerticalSyncEnabled(game->window, sfTrue);
     sfRenderWindow_setFramerateLimit(game->window, 1000);
-    init_board(game, filepath);
+    game->board = malloc(sizeof(board_t));
+    init_board(game, filepath, alpha);
     TAILQ_INIT(&game->buttons);
     add_navbar_button(game);
     game->view = sfView_create();

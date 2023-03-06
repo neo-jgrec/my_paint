@@ -24,6 +24,7 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <sys/queue.h>
+    #include <dirent.h>
 
     #include "mars.h"
 
@@ -128,7 +129,7 @@
         sfView *view;
     } game_t;
 
-    void init_game(game_t *game, char *filepath);
+    void init_game(game_t *game, char *filepath, int alpha);
 
     bool sfconvexshape_contains(sfConvexShape *shape, sfVector2f point);
     sfVector2f *convex_shape_get_points(sfConvexShape *shape);
