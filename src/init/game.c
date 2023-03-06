@@ -15,8 +15,7 @@ static void init_board(game_t *game, char *filepath)
     game->board->scale = (sfVector2f){1, 1};
     game->board->color = sfBlack;
     game->board->size_brush = 10;
-    game->board->brush = create_circle_shape(game->board->size_brush,
-    game->board->color);
+    game->board->brush = create_circle_shape(game->board->size_brush, sfBlack);
     game->board->brush_type = CIRCLE;
     if (filepath != NULL)
         IMAGE = sfImage_createFromFile(filepath);

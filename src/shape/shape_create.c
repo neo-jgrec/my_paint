@@ -28,12 +28,3 @@ sfRectangleShape *create_rectangle_shape(sfVector2f size, sfColor color)
     sfRectangleShape_setOutlineThickness(rectangle, 1);
     return (rectangle);
 }
-
-sfSprite *create_sprite_texture(char *filepath)
-{
-    sfTexture *texture = sfTexture_createFromFile(filepath, NULL);
-    sfSprite *sprite = sfSprite_create();
-
-    sfSprite_setTexture(sprite, texture, sfTrue);
-    return (sprite);
-}

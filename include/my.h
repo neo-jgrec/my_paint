@@ -50,6 +50,12 @@
     #define VECT2F_SUB(a, b) (sfVector2f) {\
     a.x - b.x, a.y - b.y\
     }
+    #define VECT2F_DIV(a, b) (sfVector2f) {\
+    a.x / b, a.y / b\
+    }
+    #define VECT2F_MULT(a, b) (sfVector2f) {\
+    a.x * b, a.y * b\
+    }
 
     #define IMAGE game->board->image
     #define BRUSH_SIZE game->board->size_brush
@@ -75,7 +81,6 @@
 
     typedef enum {
         CIRCLE,
-        SPRITE,
         RECTANGLE,
         CONVEX_SHAPE
     } brush_type_t;
@@ -128,7 +133,7 @@
     sfVector2f *convex_shape_get_points(sfConvexShape *shape);
     sfCircleShape *create_circle_shape(float radius, sfColor color);
     sfRectangleShape *create_rectangle_shape(sfVector2f size, sfColor color);
-    sfSprite *create_sprite_texture(char *filepath);
+    sfSprite *create_sprite_texture(char *filepath, sfVector2f size);
 
     bool is_hovering(sfVector2f pos, sfRenderWindow *window, sfVector2f size);
 
@@ -139,10 +144,10 @@
     void main_scene(game_t *game);
     void update_main_scene(game_t *game);
 
+    void draw_shape_on_sfimage(game_t *game);
+    void draw_rectangle_on_sfimage(game_t *game);
     void draw_circle_on_sfimage(game_t *game);
 
     void main_loop(game_t *game);
-    void draw_shape_on_sfimage(game_t *game);
-    void draw_rectangle_on_sfimage(game_t *game);
 
 #endif /* !MY_H_ */

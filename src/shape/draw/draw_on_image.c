@@ -16,8 +16,6 @@ void draw_shape_on_sfimage(game_t *game)
         case RECTANGLE:
             draw_rectangle_on_sfimage(game);
             break;
-        case SPRITE:
-            break;
         default:
             break;
     }
