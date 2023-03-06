@@ -28,11 +28,14 @@ void update_main_scene(game_t *game)
     while (sfRenderWindow_pollEvent(game->window, &game->event))
         event_handler(game);
     draw_on_board(game);
+    is_button_hover(game);
+    button_action(game);
 }
 
 void main_scene(game_t *game)
 {
-    sfRenderWindow_clear(game->window, sfColor_fromRGB(47, 79, 79));
+    sfRenderWindow_clear(game->window, sfColor_fromRGB(69, 69, 69));
     sfRenderWindow_drawSprite(game->window, game->board->sprite, NULL);
+    display_buttons(game);
     sfRenderWindow_display(game->window);
 }

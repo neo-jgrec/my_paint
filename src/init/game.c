@@ -50,26 +50,6 @@ static void init_board(game_t *game, char *filepath, int alpha)
     sfSprite_setScale(game->board->sprite, game->board->scale);
 }
 
-static void add_navbar_button(game_t *game)
-{
-    char *button_name[] = {"FILE", "EDIT", "HELP", NULL};
-    sfVector2f button_pos[] = {{0, 0}, {100, 0}, {200, 0}, {0, 0}};
-    sfVector2f button_size[] = {{100, 50}, {100, 50}, {100, 50}, {0, 0}};
-    button_t *button = malloc(sizeof(button_t));
-
-    for (int i = 0; button_name[i]; i++) {
-        button->name = button_name[i];
-        button->pos = button_pos[i];
-        button->size = button_size[i];
-        button->shape = sfRectangleShape_create();
-        button->callback = NULL;
-        sfRectangleShape_setPosition(button->shape, button->pos);
-        sfRectangleShape_setSize(button->shape, button->size);
-        sfRectangleShape_setFillColor(button->shape, sfBlack);
-        TAILQ_INSERT_TAIL(&game->buttons, button, next);
-    }
-}
-
 void init_game(game_t *game, char *filepath, int alpha)
 {
     game->scene = MAIN;
@@ -90,4 +70,5 @@ void init_game(game_t *game, char *filepath, int alpha)
     sfView_setCenter(game->view, (sfVector2f){400, 300});
     sfView_setSize(game->view, (sfVector2f){800, 600});
     sfRenderWindow_setView(game->window, game->view);
+    game->font = sfFont_createFromFile("assets/Vogue.ttf");
 }

@@ -98,9 +98,8 @@
         sfVector2f size;
         sfRectangleShape *shape;
         sfTexture *texture;
-        button_state_t *state;
-        button_textures_t *textures;
-        bool (*callback)(void *self, void *opt);
+        button_state_t state;
+        button_textures_t textures;
         TAILQ_ENTRY(button_s) next;
     } button_t;
 
@@ -124,31 +123,30 @@
         sfRenderWindow *window;
         sfEvent event;
         sfClock *clock;
-        TAILQ_HEAD(, button_s) buttons;
+        TAILQ_HEAD(buttons, button_s) buttons;
+        TAILQ_HEAD(sub_menu, button_s) sub_menu;
         board_t *board;
         sfView *view;
+        sfFont *font;
     } game_t;
 
     void init_game(game_t *game, char *filepath, int alpha);
-
     bool sfconvexshape_contains(sfConvexShape *shape, sfVector2f point);
     sfVector2f *convex_shape_get_points(sfConvexShape *shape);
     sfCircleShape *create_circle_shape(float radius, sfColor color);
     sfRectangleShape *create_rectangle_shape(sfVector2f size, sfColor color);
-
     bool is_hovering(sfVector2f pos, sfRenderWindow *window, sfVector2f size);
-
     void draw_on_board(game_t *game);
-
     void scene_handler(game_t *game);
-
     void main_scene(game_t *game);
     void update_main_scene(game_t *game);
-
     void draw_shape_on_sfimage(game_t *game);
     void draw_rectangle_on_sfimage(game_t *game);
     void draw_circle_on_sfimage(game_t *game);
-
     void main_loop(game_t *game);
+    void add_navbar_button(game_t *game);
+    void display_buttons(game_t *game);
+    bool is_button_hover(game_t *game);
+    void button_action(game_t *game);
 
 #endif /* !MY_H_ */
