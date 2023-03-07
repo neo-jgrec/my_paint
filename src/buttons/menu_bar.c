@@ -7,7 +7,21 @@
 
 #include "my.h"
 
-bool is_button_hover(game_t *game)
+int is_panel(button_t *button, game_t *game)
+{
+    char *panel_name[] = {"FILE", "EDIT", "HELP", NULL};
+    int nb_of_panel = 3;
+
+    for (int i = 0; i < nb_of_panel; i++) {
+        if (my_strcmp(button->name, panel_name[i]) == 0) {
+            game->panel = i + 1;
+            return (1);
+        }
+    }
+    return (0);
+}
+
+bool are_buttons_hover(game_t *game)
 {
     button_t *button;
     sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
@@ -17,10 +31,22 @@ bool is_button_hover(game_t *game)
         button->size.x && mouse_pos.y >= button->pos.y && mouse_pos.y <=
         button->pos.y + button->size.y) {
             button->state = HOVER;
+            is_panel(button, game);
             return (true);
-        } else {
-            button->state = IDLE;
         }
+        button->state = IDLE;
+    }
+    return (false);
+}
+
+bool is_button_hover(button_t *button, game_t *game)
+{
+    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
+
+    if (mouse_pos.x >= button->pos.x && mouse_pos.x <= button->pos.x +
+    button->size.x && mouse_pos.y >= button->pos.y && mouse_pos.y <=
+    button->pos.y + button->size.y) {
+        return (true);
     }
     return (false);
 }
@@ -40,51 +66,5 @@ void button_action(game_t *game)
             default:
                 break;
         }
-    }
-}
-
-void display_buttons(game_t *game)
-{
-    button_t *button;
-    sfText *tmp_text;
-
-    TAILQ_FOREACH(button, &game->buttons, next) {
-        if ((my_strcmp(button->name, "FILE") == 0 || my_strcmp(button->name,
-        "EDIT") == 0 || my_strcmp(button->name, "HELP") == 0)) {
-            sfRenderWindow_drawRectangleShape(game->window, button->shape,
-            NULL);
-            tmp_text = sfText_create();
-            sfText_setString(tmp_text, button->name);
-            sfText_setFont(tmp_text, game->font);
-            sfText_setCharacterSize(tmp_text, 15);
-            sfText_setColor(tmp_text, sfBlack);
-            sfText_setPosition(tmp_text, (sfVector2f) {button->pos.x + 10,
-            button->pos.y + 5});
-            sfRenderWindow_drawText(game->window, tmp_text, NULL);
-            sfText_destroy(tmp_text);
-        }
-        if (my_strcmp(button->name, "FILE") == 0 && button->state == HOVER) {
-            button_t *sub_button;
-
-            TAILQ_FOREACH(sub_button, &game->buttons, next) {
-                if (my_strcmp(sub_button->name, "FILE") == 0 ||
-                my_strcmp(sub_button->name, "EDIT") == 0 ||
-                my_strcmp(sub_button->name, "HELP") == 0) {
-                    continue;
-                }
-                sfRenderWindow_drawRectangleShape(game->window,
-                sub_button->shape, NULL);
-                tmp_text = sfText_create();
-                sfText_setString(tmp_text, sub_button->name);
-                sfText_setFont(tmp_text, game->font);
-                sfText_setCharacterSize(tmp_text, 15);
-                sfText_setColor(tmp_text, sfBlack);
-                sfText_setPosition(tmp_text, (sfVector2f) {sub_button->pos.x +
-                10, sub_button->pos.y + 5});
-                sfRenderWindow_drawText(game->window, tmp_text, NULL);
-                sfText_destroy(tmp_text);
-            }
-        }
-        button->state = IDLE;
     }
 }

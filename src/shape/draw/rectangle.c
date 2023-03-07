@@ -21,8 +21,7 @@ static void draw_line_rectangle(game_t *game, int i, int size_y)
             (line.x + i < sfSprite_getTextureRect(game->board->sprite).width
             && line.x - i >= 0 && line.y - size_y >= 0
             && line.y + size_y < sfSprite_getTextureRect(\
-            game->board->sprite).height) ?
-            ({
+            game->board->sprite).height) ? ({
                 sfImage_setPixel(IMAGE, line.x + i, line.y + size_y, color);
                 sfImage_setPixel(IMAGE, line.x - i, line.y + size_y, color);
                 sfImage_setPixel(IMAGE, line.x + i, line.y - size_y, color);

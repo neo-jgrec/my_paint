@@ -85,7 +85,6 @@ void add_navbar_button(game_t *game)
     int nb_of_button = 3;
     sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{0, 0}, {50, 0}, {100, 0}};
-
     for (int i = 0; i < nb_of_button; i++) {
         button_t *button = malloc(sizeof(button_t));
         button->name = button_name[i];
@@ -97,11 +96,9 @@ void add_navbar_button(game_t *game)
         sfRectangleShape_setFillColor(button->shape, sfCyan);
         sfRectangleShape_setOutlineColor(button->shape, sfBlack);
         sfRectangleShape_setOutlineThickness(button->shape, 1);
-
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
-    }
-    init_file_button(game);
+    } init_file_button(game);
     init_edit_button(game);
     init_help_button(game);
 }

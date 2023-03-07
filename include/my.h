@@ -78,7 +78,7 @@
         NONE,
         FILE_PANEL,
         EDIT_PANEL,
-        HELP
+        HELP_PANEL
     } wich_panel_t;
 
     typedef enum {
@@ -147,8 +147,8 @@
     void draw_circle_on_sfimage(game_t *game);
     void main_loop(game_t *game);
     void add_navbar_button(game_t *game);
-    void display_buttons(game_t *game);
-    bool is_button_hover(game_t *game);
+    void display_all_buttons(game_t *game);
+    bool are_buttons_hover(game_t *game);
     void button_action(game_t *game);
 
 #endif /* !MY_H_ */
