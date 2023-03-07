@@ -75,6 +75,7 @@
     } scene_t;
 
     typedef enum {
+        NONE,
         FILE_PANEL,
         EDIT_PANEL,
         HELP
@@ -128,6 +129,7 @@
         board_t *board;
         sfView *view;
         sfFont *font;
+        wich_panel_t panel;
     } game_t;
 
     void init_game(game_t *game, char *filepath, int alpha);

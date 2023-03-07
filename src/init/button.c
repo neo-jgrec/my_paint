@@ -57,7 +57,7 @@ static void init_edit_button(game_t *game)
 
 static void init_help_button(game_t *game)
 {
-    char *button_name[] = {"LOGIN", "HELP", NULL};
+    char *button_name[] = {"ABOUT", "HELP_", NULL};
     int nb_of_button = 2;
     sfVector2f button_size[] = {{50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{100, 25}, {100, 50}};
