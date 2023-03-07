@@ -18,9 +18,11 @@ static void draw_line_rectangle(game_t *game, int i, int size_y)
         sfVector2f line = game->board->last_pos;
         for (int k = 0; k < VECT2F_MANHATTAN(pos, game->board->last_pos); k++) {
             line = VECT2F_ADD(line, dir_norm);
-            (line.x + i < sfImage_getSize(IMAGE).x
+            (line.x + i < sfSprite_getTextureRect(game->board->sprite).width
             && line.x - i >= 0 && line.y - size_y >= 0
-            && line.y + size_y < sfImage_getSize(IMAGE).y) ? ({
+            && line.y + size_y < sfSprite_getTextureRect(\
+            game->board->sprite).height) ?
+            ({
                 sfImage_setPixel(IMAGE, line.x + i, line.y + size_y, color);
                 sfImage_setPixel(IMAGE, line.x - i, line.y + size_y, color);
                 sfImage_setPixel(IMAGE, line.x + i, line.y - size_y, color);
@@ -39,10 +41,10 @@ void draw_rectangle_on_sfimage(game_t *game)
 
     for (int i = 0; i < size.x; i++) {
         for (int j = 0; j < size.y; j++) {
-            (pos.x + i < sfImage_getSize(IMAGE).x
+            (pos.x + i < sfSprite_getTextureRect(game->board->sprite).width
             && pos.x - i >= 0 && pos.y - j >= 0
-            && pos.y + j < sfImage_getSize(IMAGE).y) ?
-            ({
+            && pos.y + j < sfSprite_getTextureRect(game->board->sprite).height)
+            ? ({
             sfImage_setPixel(IMAGE, pos.x + i, pos.y + j, color);
             sfImage_setPixel(IMAGE, pos.x - i, pos.y + j, color);
             sfImage_setPixel(IMAGE, pos.x + i, pos.y - j, color);
