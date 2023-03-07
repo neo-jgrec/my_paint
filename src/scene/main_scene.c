@@ -30,6 +30,8 @@ void update_main_scene(game_t *game)
     draw_on_board(game);
     are_buttons_hover(game);
     button_action(game);
+    if (sfMouse_isButtonPressed(sfMouseLeft))
+        game->panel = 0;
 }
 
 void main_scene(game_t *game)
