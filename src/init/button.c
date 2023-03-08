@@ -9,7 +9,7 @@
 
 static void init_file_button(game_t *game)
 {
-    char *button_name[] = {"NEW", "OPEN", "SAVE", "EXIT", NULL};
+    char *button_name[] = {"New", "Open", "Save", "Exit", NULL};
     int nb_of_button = 4;
     sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{0, 25}, {0, 50}, {0, 75}, {0, 100}};
@@ -22,9 +22,8 @@ static void init_file_button(game_t *game)
         button->shape = sfRectangleShape_create();
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
-        sfRectangleShape_setFillColor(button->shape, sfCyan);
-        sfRectangleShape_setOutlineColor(button->shape, sfBlack);
-        sfRectangleShape_setOutlineThickness(button->shape, 1);
+        sfRectangleShape_setFillColor(button->shape,
+        sfColor_fromRGB(59, 59, 59));
 
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
@@ -33,7 +32,7 @@ static void init_file_button(game_t *game)
 
 static void init_edit_button(game_t *game)
 {
-    char *button_name[] = {"BRUSH", "ERASER", "COLOR", "BRUSH SIZE", NULL};
+    char *button_name[] = {"Brush", "Eraser", "Color", "Brush Size", NULL};
     int nb_of_button = 4;
     sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{50, 25}, {50, 50}, {50, 75}, {50, 100}};
@@ -46,9 +45,8 @@ static void init_edit_button(game_t *game)
         button->shape = sfRectangleShape_create();
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
-        sfRectangleShape_setFillColor(button->shape, sfCyan);
-        sfRectangleShape_setOutlineColor(button->shape, sfBlack);
-        sfRectangleShape_setOutlineThickness(button->shape, 1);
+        sfRectangleShape_setFillColor(button->shape,
+        sfColor_fromRGB(59, 59, 59));
 
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
@@ -57,7 +55,7 @@ static void init_edit_button(game_t *game)
 
 static void init_help_button(game_t *game)
 {
-    char *button_name[] = {"ABOUT", "HELP_", NULL};
+    char *button_name[] = {"About", "Help.", NULL};
     int nb_of_button = 2;
     sfVector2f button_size[] = {{50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{100, 25}, {100, 50}};
@@ -70,9 +68,8 @@ static void init_help_button(game_t *game)
         button->shape = sfRectangleShape_create();
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
-        sfRectangleShape_setFillColor(button->shape, sfCyan);
-        sfRectangleShape_setOutlineColor(button->shape, sfBlack);
-        sfRectangleShape_setOutlineThickness(button->shape, 1);
+        sfRectangleShape_setFillColor(button->shape,
+        sfColor_fromRGB(59, 59, 59));
 
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
@@ -81,7 +78,7 @@ static void init_help_button(game_t *game)
 
 void add_navbar_button(game_t *game)
 {
-    char *button_name[] = {"FILE", "EDIT", "HELP", NULL};
+    char *button_name[] = {"File", "Edit", "Help", NULL};
     int nb_of_button = 3;
     sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{0, 0}, {50, 0}, {100, 0}};
@@ -93,12 +90,11 @@ void add_navbar_button(game_t *game)
         button->shape = sfRectangleShape_create();
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
-        sfRectangleShape_setFillColor(button->shape, sfCyan);
-        sfRectangleShape_setOutlineColor(button->shape, sfBlack);
-        sfRectangleShape_setOutlineThickness(button->shape, 1);
+        button->action = NULL;
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
-    } init_file_button(game);
+    }
+    init_file_button(game);
     init_edit_button(game);
     init_help_button(game);
 }

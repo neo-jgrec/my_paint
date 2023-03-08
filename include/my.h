@@ -66,7 +66,7 @@
     typedef enum {
         IDLE,
         HOVER,
-        CLICKED
+        CLICKED,
     } button_state_t;
 
     typedef enum {
@@ -101,6 +101,7 @@
         sfTexture *texture;
         button_state_t state;
         button_textures_t textures;
+        void (*action)(void *, void *);
         TAILQ_ENTRY(button_s) next;
     } button_t;
 

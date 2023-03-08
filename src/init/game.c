@@ -70,6 +70,6 @@ void init_game(game_t *game, char *filepath, int alpha)
     sfView_setCenter(game->view, (sfVector2f){400, 300});
     sfView_setSize(game->view, (sfVector2f){800, 600});
     sfRenderWindow_setView(game->window, game->view);
-    game->font = sfFont_createFromFile("assets/Vogue.ttf");
+    game->font = sfFont_createFromFile("assets/arial.ttf");
     game->panel = NONE;
 }
