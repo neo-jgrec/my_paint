@@ -87,6 +87,11 @@
         CONVEX_SHAPE
     } brush_type_t;
 
+    typedef enum {
+        NONE_OVERLAY,
+        HELP
+    } menu_overlay_t;
+
     typedef struct button_textures_s {
         sfTexture *hover;
         sfTexture *clicked;
@@ -101,7 +106,7 @@
         sfTexture *texture;
         button_state_t state;
         button_textures_t textures;
-        void (*action)(void *, void *);
+        void (*action)(void *);
         TAILQ_ENTRY(button_s) next;
     } button_t;
 
@@ -126,11 +131,11 @@
         sfEvent event;
         sfClock *clock;
         TAILQ_HEAD(buttons, button_s) buttons;
-        TAILQ_HEAD(sub_menu, button_s) sub_menu;
         board_t *board;
         sfView *view;
         sfFont *font;
         wich_panel_t panel;
+        menu_overlay_t overlay;
     } game_t;
 
     void init_game(game_t *game, char *filepath, int alpha);
@@ -149,7 +154,9 @@
     void main_loop(game_t *game);
     void add_navbar_button(game_t *game);
     void display_all_buttons(game_t *game);
-    bool are_buttons_hover(game_t *game);
     void button_action(game_t *game);
+
+    void new_file(game_t *game);
+    void help(game_t *game);
 
 #endif /* !MY_H_ */

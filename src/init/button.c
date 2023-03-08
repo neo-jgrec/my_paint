@@ -24,7 +24,7 @@ static void init_file_button(game_t *game)
         sfRectangleShape_setSize(button->shape, button->size);
         sfRectangleShape_setFillColor(button->shape,
         sfColor_fromRGB(59, 59, 59));
-
+        (i == 0) ? button->action = (void *)new_file : 0;
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
     }
@@ -70,7 +70,8 @@ static void init_help_button(game_t *game)
         sfRectangleShape_setSize(button->shape, button->size);
         sfRectangleShape_setFillColor(button->shape,
         sfColor_fromRGB(59, 59, 59));
-
+        (i == 1 && my_strcmp(button->name, "Help.") == 0) ?
+        button->action = (void *)help : 0;
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
     }

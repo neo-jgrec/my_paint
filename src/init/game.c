@@ -72,4 +72,5 @@ void init_game(game_t *game, char *filepath, int alpha)
     sfRenderWindow_setView(game->window, game->view);
     game->font = sfFont_createFromFile("assets/arial.ttf");
     game->panel = NONE;
+    game->overlay = NONE_OVERLAY;
 }

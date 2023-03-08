@@ -63,5 +63,7 @@ void button_action(game_t *game)
             if (my_strcmp(button->name, "Help") == 0)
                 game->panel = HELP_PANEL;
         }
+        if (button->action != NULL && button->state == CLICKED)
+            button->action(game);
     }
 }
