@@ -10,7 +10,7 @@
 static void init_file_button(game_t *game)
 {
     char *button_name[] = {"New", "Open", "Save", "Exit", NULL};
-    sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}, {50, 25}};
+    sfVector2f button_size[] = {{60, 25}, {60, 25}, {60, 25}, {60, 25}};
     sfVector2f button_pos[] = {{0, 25}, {0, 50}, {0, 75}, {0, 100}};
 
     for (int i = 0; i < 4; i++) {
@@ -31,7 +31,7 @@ static void init_file_button(game_t *game)
 static void init_edit_button(game_t *game)
 {
     char *button_name[] = {"Brush", "Eraser", "Color", "Brush Size", NULL};
-    sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}, {50, 25}};
+    sfVector2f button_size[] = {{125, 25}, {125, 25}, {125, 25}, {125, 25}};
     sfVector2f button_pos[] = {{50, 25}, {50, 50}, {50, 75}, {50, 100}};
 
     for (int i = 0; i < 4; i++) {
@@ -67,7 +67,7 @@ static void init_about(game_t *game)
 static void init_help_button(game_t *game)
 {
     char *button_name[] = {"About", "Help.", NULL};
-    sfVector2f button_size[] = {{50, 25}, {50, 25}};
+    sfVector2f button_size[] = {{75, 25}, {75, 25}};
     sfVector2f button_pos[] = {{100, 25}, {100, 50}};
 
     for (int i = 0; i < 2; i++) {
