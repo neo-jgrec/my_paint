@@ -57,6 +57,10 @@ void init_game(game_t *game, char *filepath, int alpha)
     game->scene = MAIN;
     game->window = sfRenderWindow_create((sfVideoMode){800, 600, 32},
     "my_paint", sfResize | sfClose, NULL);
+    game->view = sfView_create();
+    sfView_setSize(game->view, (sfVector2f){800, 600});
+    sfView_setCenter(game->view, (sfVector2f){400, 300});
+    sfRenderWindow_setView(game->window, game->view);
     game->clock = sfClock_create();
     sfRenderWindow_setFramerateLimit(game->window, 60);
     sfRenderWindow_setVerticalSyncEnabled(game->window, sfTrue);
@@ -64,10 +68,6 @@ void init_game(game_t *game, char *filepath, int alpha)
     init_board(game, filepath, alpha);
     TAILQ_INIT(&game->buttons);
     add_navbar_button(game);
-    game->view = sfView_create();
-    sfView_setSize(game->view, (sfVector2f){800, 600});
-    sfView_setCenter(game->view, (sfVector2f){400, 300});
-    sfRenderWindow_setView(game->window, game->view);
     game->panel = NONE;
     game->overlay = NONE_OVERLAY;
 }
