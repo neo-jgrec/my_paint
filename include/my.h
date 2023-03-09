@@ -62,6 +62,7 @@
     #define BRUSH_SIZE game->board->size_brush
     #define BRUSH_COLOR game->board->color
 
+    #define VERSION "My_Paint 1.0.0"
 
     typedef enum {
         IDLE,
@@ -126,6 +127,11 @@
         float size_brush;
     } board_t;
 
+    typedef struct about_s {
+        bool is_about;
+        sfText *text;
+    } about_t;
+
     typedef struct game_s {
         scene_t scene;
         sfRenderWindow *window;
@@ -137,6 +143,7 @@
         sfFont *font;
         wich_panel_t panel;
         menu_overlay_t overlay;
+        about_t *about;
     } game_t;
 
     void init_game(game_t *game, char *filepath, int alpha);
@@ -159,6 +166,8 @@
 
     void new_file(game_t *game);
     void help(game_t *game);
+    void about(game_t *game);
+    void button_exit(game_t *game);
 
     void help_scene(game_t *game);
     void update_help_scene(game_t *game);

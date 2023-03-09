@@ -10,5 +10,6 @@
 
     #include "my_printf.h"
     #include "my_stdlib.h"
+    #include "array.h"
 
 #endif /* !_MARS_H_ */

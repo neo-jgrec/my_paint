@@ -23,12 +23,11 @@ void draw_shape_on_sfimage(game_t *game)
 
 void draw_on_board(game_t *game)
 {
-    game->board->mouse_pos = VEC2F_CAST(\
-    sfMouse_getPositionRenderWindow(game->window));
-    game->board->mouse_pos = VECT2F_SUB(game->board->mouse_pos,
-    game->board->pos);
     game->board->mouse_pos = sfRenderWindow_mapPixelToCoords(game->window,
-    VEC2I_CAST(game->board->mouse_pos), game->view);
+    sfMouse_getPositionRenderWindow(game->window), NULL);
+    game->board->mouse_pos.x -= game->board->pos.x;
+    game->board->mouse_pos.y -= game->board->pos.y;
+
 
     if (is_hovering(game->board->pos, game->window, game->board->size)
     && sfMouse_isButtonPressed(sfMouseLeft)) {

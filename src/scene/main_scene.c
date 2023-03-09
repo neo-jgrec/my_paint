@@ -9,17 +9,20 @@
 
 static void event_handler(game_t *game)
 {
-    if (game->event.type == sfEvtClosed ||
-    (game->event.type == sfEvtKeyPressed &&
-    game->event.key.code == sfKeyEscape))
+    if (game->event.type == sfEvtClosed)
         sfRenderWindow_close(game->window);
-
+    if (game->event.type == sfEvtKeyPressed &&
+    game->event.key.code == sfKeyEscape) {
+        game->overlay = NONE_OVERLAY;
+        game->panel = NONE;
+        game->scene = MAIN;
+    }
     if (game->event.type == sfEvtResized) {
-        sfVector2u size = sfRenderWindow_getSize(game->window);
-        sfView_setSize(game->view, (sfVector2f) {size.x, size.y});
-        sfRenderWindow_setView(game->window, game->view);
-        game->board->size = (sfVector2f) {size.x - game->board->pos.x,
-        size.y - game->board->pos.y};
+        sfVector2u size = {game->event.size.width, game->event.size.height};
+        sfView *view = sfView_createFromRect((sfFloatRect){0, 0,
+        (float)size.x, (float)size.y});
+        sfRenderWindow_setView(game->window, view);
+        sfView_destroy(view);
     }
 }
 
@@ -38,5 +41,7 @@ void main_scene(game_t *game)
     display_all_buttons(game);
     if (game->overlay == HELP)
         game->scene = HELP_SCENE;
+    if (game->about->is_about == true)
+        sfRenderWindow_drawText(game->window, game->about->text, NULL);
     sfRenderWindow_display(game->window);
 }

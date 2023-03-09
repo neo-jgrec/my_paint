@@ -22,8 +22,8 @@ bool is_button_hover(button_t *button, game_t *game)
 void change_button_state(button_t *button, game_t *game)
 {
     if (is_button_hover(button, game) == true) {
-        if (game->event.type == sfEvtMouseButtonPressed &&
-        game->event.mouseButton.button == sfMouseLeft) {
+        if (game->event.type == sfEvtMouseButtonPressed
+        && game->event.mouseButton.button == sfMouseLeft) {
             button->state = CLICKED;
         } else {
             button->state = HOVER;
@@ -51,8 +51,6 @@ void button_action(game_t *game)
 {
     button_t *button;
 
-    if (sfMouse_isButtonPressed(sfMouseLeft) && game->panel != NONE)
-        game->panel = NONE;
     TAILQ_FOREACH(button, &game->buttons, next) {
         change_button_state(button, game);
         if (button->state == HOVER)

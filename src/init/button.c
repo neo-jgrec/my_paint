@@ -10,11 +10,10 @@
 static void init_file_button(game_t *game)
 {
     char *button_name[] = {"New", "Open", "Save", "Exit", NULL};
-    int nb_of_button = 4;
     sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{0, 25}, {0, 50}, {0, 75}, {0, 100}};
 
-    for (int i = 0; i < nb_of_button; i++) {
+    for (int i = 0; i < 4; i++) {
         button_t *button = malloc(sizeof(button_t));
         button->name = button_name[i];
         button->pos = button_pos[i];
@@ -22,9 +21,8 @@ static void init_file_button(game_t *game)
         button->shape = sfRectangleShape_create();
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
-        sfRectangleShape_setFillColor(button->shape,
-        sfColor_fromRGB(59, 59, 59));
         (i == 0) ? button->action = (void *)new_file : 0;
+        (i == 3) ? button->action = (void *)button_exit : 0;
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
     }
@@ -33,11 +31,10 @@ static void init_file_button(game_t *game)
 static void init_edit_button(game_t *game)
 {
     char *button_name[] = {"Brush", "Eraser", "Color", "Brush Size", NULL};
-    int nb_of_button = 4;
     sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{50, 25}, {50, 50}, {50, 75}, {50, 100}};
 
-    for (int i = 0; i < nb_of_button; i++) {
+    for (int i = 0; i < 4; i++) {
         button_t *button = malloc(sizeof(button_t));
         button->name = button_name[i];
         button->pos = button_pos[i];
@@ -45,22 +42,35 @@ static void init_edit_button(game_t *game)
         button->shape = sfRectangleShape_create();
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
-        sfRectangleShape_setFillColor(button->shape,
-        sfColor_fromRGB(59, 59, 59));
 
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
     }
+}
+
+static void init_about(game_t *game)
+{
+    game->about = malloc(sizeof(about_t));
+    game->about->is_about = false;
+    game->about->text = sfText_create();
+    sfText_setString(game->about->text, VERSION);
+    sfText_setFont(game->about->text, game->font);
+    sfText_setCharacterSize(game->about->text, 20);
+    sfText_setPosition(game->about->text, (sfVector2f) {
+        sfRenderWindow_getSize(\
+        game->window).x - sfText_getGlobalBounds(game->about->text).width - 10,
+        (0 - sfText_getGlobalBounds(game->about->text).height / 2) + 10
+    });
+    sfText_setColor(game->about->text, sfBlack);
 }
 
 static void init_help_button(game_t *game)
 {
     char *button_name[] = {"About", "Help.", NULL};
-    int nb_of_button = 2;
     sfVector2f button_size[] = {{50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{100, 25}, {100, 50}};
 
-    for (int i = 0; i < nb_of_button; i++) {
+    for (int i = 0; i < 2; i++) {
         button_t *button = malloc(sizeof(button_t));
         button->name = button_name[i];
         button->pos = button_pos[i];
@@ -68,22 +78,23 @@ static void init_help_button(game_t *game)
         button->shape = sfRectangleShape_create();
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
-        sfRectangleShape_setFillColor(button->shape,
-        sfColor_fromRGB(59, 59, 59));
         (i == 1 && my_strcmp(button->name, "Help.") == 0) ?
         button->action = (void *)help : 0;
+        (i == 0 && my_strcmp(button->name, "About") == 0) ?
+        button->action = (void *)about : 0;
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
     }
+    init_about(game);
 }
 
 void add_navbar_button(game_t *game)
 {
     char *button_name[] = {"File", "Edit", "Help", NULL};
-    int nb_of_button = 3;
     sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}};
     sfVector2f button_pos[] = {{0, 0}, {50, 0}, {100, 0}};
-    for (int i = 0; i < nb_of_button; i++) {
+
+    for (int i = 0; i < 3; i++) {
         button_t *button = malloc(sizeof(button_t));
         button->name = button_name[i];
         button->pos = button_pos[i];

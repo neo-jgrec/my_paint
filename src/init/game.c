@@ -35,6 +35,7 @@ static void init_image(game_t *game, char *filepath, int alpha)
 
 static void init_board(game_t *game, char *filepath, int alpha)
 {
+    game->board = malloc(sizeof(board_t));
     game->board->size = (sfVector2f){400, 300};
     game->board->pos = (sfVector2f){266, 150};
     game->board->scale = (sfVector2f){1, 1};
@@ -52,24 +53,21 @@ static void init_board(game_t *game, char *filepath, int alpha)
 
 void init_game(game_t *game, char *filepath, int alpha)
 {
+    game->font = sfFont_createFromFile("assets/JetBrainsMono-Medium.ttf");
     game->scene = MAIN;
     game->window = sfRenderWindow_create((sfVideoMode){800, 600, 32},
     "my_paint", sfResize | sfClose, NULL);
     game->clock = sfClock_create();
     sfRenderWindow_setFramerateLimit(game->window, 60);
-    sfRenderWindow_setMouseCursorVisible(game->window, sfTrue);
-    sfRenderWindow_setKeyRepeatEnabled(game->window, sfFalse);
-    sfRenderWindow_hasFocus(game->window);
     sfRenderWindow_setVerticalSyncEnabled(game->window, sfTrue);
-    sfRenderWindow_setFramerateLimit(game->window, 1000);
-    game->board = malloc(sizeof(board_t));
+    sfRenderWindow_setKeyRepeatEnabled(game->window, sfFalse);
     init_board(game, filepath, alpha);
-    TAILQ_INIT(&game->buttons); add_navbar_button(game);
+    TAILQ_INIT(&game->buttons);
+    add_navbar_button(game);
     game->view = sfView_create();
-    sfView_setCenter(game->view, (sfVector2f){400, 300});
     sfView_setSize(game->view, (sfVector2f){800, 600});
+    sfView_setCenter(game->view, (sfVector2f){400, 300});
     sfRenderWindow_setView(game->window, game->view);
-    game->font = sfFont_createFromFile("assets/arial.ttf");
     game->panel = NONE;
     game->overlay = NONE_OVERLAY;
 }
