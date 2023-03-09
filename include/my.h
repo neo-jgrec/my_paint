@@ -171,5 +171,6 @@
 
     void help_scene(game_t *game);
     void update_help_scene(game_t *game);
+    void version_text_position(game_t *game);
 
 #endif /* !MY_H_ */

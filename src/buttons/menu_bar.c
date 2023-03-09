@@ -7,6 +7,16 @@
 
 #include "my.h"
 
+void version_text_position(game_t *game)
+{
+    sfText_setPosition(game->about->text, (sfVector2f) {
+        sfRenderWindow_getSize(\
+        game->window).x - sfText_getGlobalBounds(\
+        game->about->text).width - 10,
+        (0 - sfText_getGlobalBounds(game->about->text).height / 2) + 10
+    });
+}
+
 bool is_button_hover(button_t *button, game_t *game)
 {
     sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
