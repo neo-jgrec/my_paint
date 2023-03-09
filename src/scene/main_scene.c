@@ -23,6 +23,11 @@ static void event_handler(game_t *game)
         (float)size.x, (float)size.y});
         sfRenderWindow_setView(game->window, view);
         sfView_destroy(view);
+        sfText_setPosition(game->about->text, (sfVector2f) {
+            sfRenderWindow_getSize(\
+            game->window).x - sfText_getGlobalBounds(game->about->text).width - 10,
+            (0 - sfText_getGlobalBounds(game->about->text).height / 2) + 10
+        });
     }
 }
 
