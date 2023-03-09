@@ -61,7 +61,7 @@ static void init_about(game_t *game)
         game->window).x - sfText_getGlobalBounds(game->about->text).width - 10,
         (0 - sfText_getGlobalBounds(game->about->text).height / 2) + 10
     });
-    sfText_setColor(game->about->text, sfBlack);
+    sfText_setColor(game->about->text, sfWhite);
 }
 
 static void init_help_button(game_t *game)
