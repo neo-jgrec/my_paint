@@ -7,10 +7,6 @@
 
 #include "my.h"
 
-#define TITLE "Paint"
-#define HOW_TO_USE "How to use:\n\t./my_paint\n\t./my_paint [file]\n"
-
-
 void new_file(game_t *game)
 {
     game->board->image = sfImage_createFromColor(400, 300, sfWhite);

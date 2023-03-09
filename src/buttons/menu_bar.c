@@ -33,37 +33,37 @@ void change_button_state(button_t *button, game_t *game)
     }
 }
 
+static void clicked_action(button_t *button, game_t *game)
+{
+    if (button->state == CLICKED) {
+        if (my_strcmp(button->name, "File") == 0)
+            game->panel = FILE_PANEL;
+        if (my_strcmp(button->name, "Edit") == 0)
+            game->panel = EDIT_PANEL;
+        if (my_strcmp(button->name, "Help") == 0)
+            game->panel = HELP_PANEL;
+    }
+    if (button->action != NULL && button->state == CLICKED)
+        button->action(game);
+}
+
 void button_action(game_t *game)
 {
     button_t *button;
 
+    if (sfMouse_isButtonPressed(sfMouseLeft) && game->panel != NONE)
+        game->panel = NONE;
     TAILQ_FOREACH(button, &game->buttons, next) {
         change_button_state(button, game);
-        switch (button->state) {
-            case HOVER:
-                sfRectangleShape_setFillColor(button->shape, sfColor_fromRGB
-                (31, 31, 31));
-                break;
-            case IDLE:
-                sfRectangleShape_setFillColor(button->shape, sfColor_fromRGB
-                (72, 72, 72));
-                break;
-            case CLICKED:
-                sfRectangleShape_setFillColor(button->shape, sfColor_fromRGB
-                (31, 31, 31));
-                break;
-            default:
-                break;
-        }
-        if (button->state == CLICKED) {
-            if (my_strcmp(button->name, "File") == 0)
-                game->panel = FILE_PANEL;
-            if (my_strcmp(button->name, "Edit") == 0)
-                game->panel = EDIT_PANEL;
-            if (my_strcmp(button->name, "Help") == 0)
-                game->panel = HELP_PANEL;
-        }
-        if (button->action != NULL && button->state == CLICKED)
-            button->action(game);
+        if (button->state == HOVER)
+            sfRectangleShape_setFillColor(button->shape, sfColor_fromRGB
+            (31, 31, 31));
+        if (button->state == IDLE)
+            sfRectangleShape_setFillColor(button->shape, sfColor_fromRGB
+            (72, 72, 72));
+        if (button->state == CLICKED)
+            sfRectangleShape_setFillColor(button->shape, sfColor_fromRGB
+            (31, 31, 31));
+        clicked_action(button, game);
     }
 }

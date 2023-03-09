@@ -71,6 +71,7 @@
 
     typedef enum {
         MAIN,
+        HELP_SCENE,
         EXIT
     } scene_t;
 
@@ -158,5 +159,8 @@
 
     void new_file(game_t *game);
     void help(game_t *game);
+
+    void help_scene(game_t *game);
+    void update_help_scene(game_t *game);
 
 #endif /* !MY_H_ */

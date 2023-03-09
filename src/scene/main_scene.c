@@ -36,16 +36,7 @@ void main_scene(game_t *game)
     sfRenderWindow_clear(game->window, sfColor_fromRGB(69, 69, 69));
     sfRenderWindow_drawSprite(game->window, game->board->sprite, NULL);
     display_all_buttons(game);
-    if (game->overlay == HELP) {
-        sfText *text = sfText_create();
-        sfText_setString(text, "Press 'H' to hide the help");
-        sfText_setFont(text, game->font);
-        sfText_setCharacterSize(text, 20);
-        sfText_setPosition(text, (sfVector2f) {10, 10});
-        sfRenderWindow_drawText(game->window, text, NULL);
-        sfText_destroy(text);
-    }
-    if (sfMouse_isButtonPressed(sfMouseLeft))
-        game->overlay = NONE_OVERLAY;
+    if (game->overlay == HELP)
+        game->scene = HELP_SCENE;
     sfRenderWindow_display(game->window);
 }

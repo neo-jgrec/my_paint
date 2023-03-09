@@ -64,8 +64,7 @@ void init_game(game_t *game, char *filepath, int alpha)
     sfRenderWindow_setFramerateLimit(game->window, 1000);
     game->board = malloc(sizeof(board_t));
     init_board(game, filepath, alpha);
-    TAILQ_INIT(&game->buttons);
-    add_navbar_button(game);
+    TAILQ_INIT(&game->buttons); add_navbar_button(game);
     game->view = sfView_create();
     sfView_setCenter(game->view, (sfVector2f){400, 300});
     sfView_setSize(game->view, (sfVector2f){800, 600});
