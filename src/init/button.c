@@ -32,9 +32,9 @@ static void init_file_button(game_t *game)
 
 static void init_edit_button(game_t *game)
 {
-    char *button_name[] = {"Brush", "Eraser", "Color", "Brush Size", NULL};
+    char *button_name[] = {"Switch Brush", "Eraser", "Color", "Brush Size", NULL};
     sfVector2f button_size[] = {{125, 25}, {125, 25}, {125, 25}, {125, 25}};
-    sfVector2f button_pos[] = {{50, 25}, {50, 50}, {50, 75}, {50, 100}};
+    sfVector2f button_pos[] = {{75, 25}, {75, 50}, {75, 75}, {75, 100}};
 
     for (int i = 0; i < 4; i++) {
         button_t *button = malloc(sizeof(button_t));
@@ -44,6 +44,8 @@ static void init_edit_button(game_t *game)
         button->shape = sfRectangleShape_create();
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
+        (i == 0) ? button->action = (void *)switch_brush : 0;
+        (i == 1) ? button->action = (void *)eraser_button : 0;
 
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
@@ -70,7 +72,7 @@ static void init_help_button(game_t *game)
 {
     char *button_name[] = {"About", "Help.", NULL};
     sfVector2f button_size[] = {{75, 25}, {75, 25}};
-    sfVector2f button_pos[] = {{100, 25}, {100, 50}};
+    sfVector2f button_pos[] = {{150, 25}, {150, 50}};
 
     for (int i = 0; i < 2; i++) {
         button_t *button = malloc(sizeof(button_t));
@@ -93,8 +95,8 @@ static void init_help_button(game_t *game)
 void add_navbar_button(game_t *game)
 {
     char *button_name[] = {"File", "Edit", "Help", NULL};
-    sfVector2f button_size[] = {{50, 25}, {50, 25}, {50, 25}};
-    sfVector2f button_pos[] = {{0, 0}, {50, 0}, {100, 0}};
+    sfVector2f button_size[] = {{75, 25}, {75, 25}, {75, 25}};
+    sfVector2f button_pos[] = {{0, 0}, {75, 0}, {150, 0}};
 
     for (int i = 0; i < 3; i++) {
         button_t *button = malloc(sizeof(button_t));
