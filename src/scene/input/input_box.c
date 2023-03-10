@@ -7,39 +7,14 @@
 
 #include "my.h"
 
-char fetch_char(sfKeyCode key)
+void handle_resize(game_t *game)
 {
-    for (int i = 0; i < 26; i++)
-        if (key == sfKeyA + i)
-            return 'a' + i;
-    if (key == sfKeySpace)
-        return ' ';
-    if (key == sfKeyBack)
-        return '\b';
-    if (key == sfKeyNum8)
-        return '_';
-    if (key == sfKeyPeriod)
-        return '.';
-    if (key == 48)
-        return '.';
-    return 0;
-}
-
-void manage_str(game_t *game, char c)
-{
-    if (c != 0) {
-        if (c == '\b') {
-            (game->input_box->str[0] != 0) ? (game->input_box->str[strlen(
-            game->input_box->str) - 1] = 0) : (0);
-        } else {
-            (strlen(game->input_box->str) < 20) ? ({
-                char *tmp = malloc(sizeof(char) * 2);
-                tmp[0] = c;
-                tmp[1] = 0;
-                game->input_box->str = strcat(game->input_box->str, tmp);
-                free(tmp);
-            }) : (0);
-        }
+    if (game->event.type == sfEvtResized) {
+        sfVector2u size = {game->event.size.width, game->event.size.height};
+        sfView *view = sfView_createFromRect((sfFloatRect){0, 0,
+        (float)size.x, (float)size.y});
+        sfRenderWindow_setView(game->window, view);
+        sfView_destroy(view);
     }
 }
 
@@ -56,19 +31,14 @@ void event_input_handler(game_t *game)
         if (sfKeyboard_isKeyPressed(sfKeyReturn)) {
             (game->input_box->action == SAVE) ? (sfImage_saveToFile(
             game->board->image, game->input_box->str)) : (0);
-            (game->input_box->action == LOAD) ? (sfImage_loadFromFile(
-            game->board->image, game->input_box->str)) : (0);
+            (game->input_box->action == LOAD) ? (\
+            game->board->image = sfImage_createFromFile(\
+            game->input_box->str)) : (0);
             game->input_box->action = NO_ACTION;
             game->scene = MAIN;
         }
     }
-    if (game->event.type == sfEvtResized) {
-        sfVector2u size = {game->event.size.width, game->event.size.height};
-        sfView *view = sfView_createFromRect((sfFloatRect){0, 0,
-        (float)size.x, (float)size.y});
-        sfRenderWindow_setView(game->window, view);
-        sfView_destroy(view);
-    }
+    handle_resize(game);
 }
 
 void update_input_scene(game_t *game)

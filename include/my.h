@@ -189,5 +189,10 @@
     void input_scene(game_t *game);
     void update_input_scene(game_t *game);
     void fixed_compo(game_t *game);
+    char fetch_char(sfKeyCode key);
+    void manage_str(game_t *game, char c);
+
+    char fetch_char(sfKeyCode key);
+    void manage_str(game_t *game, char c);
 
 #endif /* !MY_H_ */
