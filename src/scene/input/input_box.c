@@ -54,7 +54,11 @@ void event_input_handler(game_t *game)
         char c = fetch_char(game->event.key.code);
         manage_str(game, c);
         if (sfKeyboard_isKeyPressed(sfKeyReturn)) {
-            sfImage_saveToFile(game->board->image, game->input_box->str);
+            (game->input_box->action == SAVE) ? (sfImage_saveToFile(
+            game->board->image, game->input_box->str)) : (0);
+            (game->input_box->action == LOAD) ? (sfImage_loadFromFile(
+            game->board->image, game->input_box->str)) : (0);
+            game->input_box->action = NO_ACTION;
             game->scene = MAIN;
         }
     }
