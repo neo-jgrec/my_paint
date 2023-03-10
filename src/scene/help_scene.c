@@ -13,7 +13,6 @@ void event_help_handler(game_t *game)
         sfRenderWindow_close(game->window);
     if (game->event.type == sfEvtKeyPressed &&
     game->event.key.code == sfKeyEscape) {
-        game->overlay = NONE_OVERLAY;
         game->scene = MAIN;
     }
 }

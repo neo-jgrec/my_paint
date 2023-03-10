@@ -21,10 +21,10 @@ void new_file(game_t *game)
 void help(game_t *game)
 {
     if (game->panel == HELP_PANEL) {
-        if (game->overlay == HELP)
-            game->overlay = NONE_OVERLAY;
+        if (game->scene == HELP_SCENE)
+            game->scene = MAIN;
         else
-            game->overlay = HELP;
+            game->scene = HELP_SCENE;
         game->panel = NONE;
     }
 }
@@ -43,4 +43,13 @@ void about(game_t *game)
 void button_exit(game_t *game)
 {
     game->scene = EXIT;
+}
+
+void save_file(game_t *game)
+{
+    if (game->panel == FILE_PANEL) {
+        game->input_box->action = SAVE;
+        game->input_box->title = "Save";
+        game->scene = INPUT_SCENE;
+    }
 }

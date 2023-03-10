@@ -51,6 +51,21 @@ static void init_board(game_t *game, char *filepath, int alpha)
     sfSprite_setScale(game->board->sprite, game->board->scale);
 }
 
+static void init_input_box(game_t *game)
+{
+    game->input_box = malloc(sizeof(input_box_t));
+    game->input_box->pos = (sfVector2f){sfRenderWindow_getSize(game->window).x
+    / 2 - 100, sfRenderWindow_getSize(game->window).y / 2 - 50};
+    game->input_box->size = (sfVector2f){200, 100};
+    game->input_box->text = sfText_create();
+    sfText_setFont(game->input_box->text, game->font);
+    sfText_setCharacterSize(game->input_box->text, 20);
+    sfText_setPosition(game->input_box->text, (sfVector2f){\
+    game->input_box->pos.x + 10, game->input_box->pos.y + 10});
+    sfText_setColor(game->input_box->text, sfBlack);
+    game->input_box->str = my_calloc(100, sizeof(char));
+}
+
 void init_game(game_t *game, char *filepath, int alpha)
 {
     game->font = sfFont_createFromFile("assets/JetBrainsMono-Medium.ttf");
@@ -69,5 +84,5 @@ void init_game(game_t *game, char *filepath, int alpha)
     TAILQ_INIT(&game->buttons);
     add_navbar_button(game);
     game->panel = NONE;
-    game->overlay = NONE_OVERLAY;
+    init_input_box(game);
 }

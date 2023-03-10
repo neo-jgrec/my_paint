@@ -73,6 +73,7 @@
     typedef enum {
         MAIN,
         HELP_SCENE,
+        INPUT_SCENE,
         EXIT
     } scene_t;
 
@@ -90,9 +91,10 @@
     } brush_type_t;
 
     typedef enum {
-        NONE_OVERLAY,
-        HELP
-    } menu_overlay_t;
+        NO_ACTION,
+        SAVE,
+        LOAD
+    } file_action_t;
 
     typedef struct button_textures_s {
         sfTexture *hover;
@@ -132,6 +134,15 @@
         sfText *text;
     } about_t;
 
+    typedef struct input_box_s {
+        char *title;
+        sfText *text;
+        sfVector2f pos;
+        sfVector2f size;
+        file_action_t action;
+        char *str;
+    } input_box_t;
+
     typedef struct game_s {
         scene_t scene;
         sfRenderWindow *window;
@@ -142,8 +153,9 @@
         sfView *view;
         sfFont *font;
         wich_panel_t panel;
-        menu_overlay_t overlay;
         about_t *about;
+        input_box_t *input_box;
+        char *file_to_open;
     } game_t;
 
     void init_game(game_t *game, char *filepath, int alpha);
@@ -168,9 +180,14 @@
     void help(game_t *game);
     void about(game_t *game);
     void button_exit(game_t *game);
+    void save_file(game_t *game);
 
     void help_scene(game_t *game);
     void update_help_scene(game_t *game);
     void version_text_position(game_t *game);
+
+    void input_scene(game_t *game);
+    void update_input_scene(game_t *game);
+    void fixed_compo(game_t *game);
 
 #endif /* !MY_H_ */

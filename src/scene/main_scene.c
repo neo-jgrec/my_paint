@@ -13,7 +13,6 @@ static void event_handler(game_t *game)
         sfRenderWindow_close(game->window);
     if (game->event.type == sfEvtKeyPressed &&
     game->event.key.code == sfKeyEscape) {
-        game->overlay = NONE_OVERLAY;
         game->panel = NONE;
         game->scene = MAIN;
     }
@@ -40,8 +39,6 @@ void main_scene(game_t *game)
     sfRenderWindow_clear(game->window, sfColor_fromRGB(69, 69, 69));
     sfRenderWindow_drawSprite(game->window, game->board->sprite, NULL);
     display_all_buttons(game);
-    if (game->overlay == HELP)
-        game->scene = HELP_SCENE;
     if (game->about->is_about == true)
         sfRenderWindow_drawText(game->window, game->about->text, NULL);
     sfRenderWindow_display(game->window);

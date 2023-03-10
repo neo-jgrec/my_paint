@@ -18,6 +18,10 @@ void scene_handler(game_t *game)
             update_help_scene(game);
             help_scene(game);
             break;
+        case INPUT_SCENE:
+            update_input_scene(game);
+            input_scene(game);
+            break;
         case EXIT:
             sfRenderWindow_close(game->window);
             break;
