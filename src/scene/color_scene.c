@@ -12,7 +12,8 @@ void event_color_handler(game_t *game)
     if (game->event.type == sfEvtClosed)
         sfRenderWindow_close(game->window);
     if (game->event.type == sfEvtKeyPressed &&
-    game->event.key.code == sfKeyEscape)
+    (game->event.key.code == sfKeyEscape
+    || game->event.key.code == sfKeyEnter))
         game->scene = MAIN;
     if (game->event.type == sfEvtMouseButtonPressed) {
         sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
@@ -24,7 +25,6 @@ void event_color_handler(game_t *game)
         && mouse_posf.y <= sprite_pos.y + sprite_size.y) {
             game->board->color = sfImage_getPixel(game->color_picker_image, \
             mouse_pos.x - sprite_pos.x, mouse_pos.y - sprite_pos.y);
-            game->scene = MAIN;
         }
     }
 
@@ -41,23 +41,23 @@ void draw_text(game_t *game, sfImage *image, sfSprite *sprite)
 {
     sfText *text = sfText_create();
     sfText_setFont(text, game->font);
-    sfText_setString(text, "Click on the color you want to use");
+    sfText_setString(text, "Current color");
     sfText_setCharacterSize(text, 20);
     sfText_setPosition(text, (sfVector2f){
         sfRenderWindow_getSize(game->window).x / 2 - sfText_getLocalBounds(\
         text).width / 2,
         sfRenderWindow_getSize(game->window).y / 2 - sfText_getLocalBounds(\
         text).height * 2 - sfImage_getSize(image).y / 2});
+    sfText_setColor(text, game->board->color);
     sfRenderWindow_drawText(game->window, text, NULL);
-
-    sfText_setString(text, "Press escape to go back");
-    sfText_setCharacterSize(text, 20);
+    sfText_setString(text, "Press escape/enter to go back");
     sfText_setPosition(text, (sfVector2f){
         sfRenderWindow_getSize(game->window).x / 2 - sfText_getLocalBounds(\
         text).width / 2,
         sfSprite_getPosition(sprite).y + sfImage_getSize(\
         image).y + sfText_getLocalBounds(text).height});
-    sfRenderWindow_drawText(game->window, text, NULL);
+    sfText_setColor(text, sfBlack);
+sfRenderWindow_drawText(game->window, text, NULL);
     sfText_destroy(text);
 }
 
