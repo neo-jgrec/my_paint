@@ -18,6 +18,25 @@ void handle_resize(game_t *game)
     }
 }
 
+void chose_action(game_t *game)
+{
+    (game->input_box->action == SAVE) ? (sfImage_saveToFile(
+    game->board->image, game->input_box->str)) : (0);
+    (game->input_box->action == LOAD) ? ({
+        game->board->image = sfImage_createFromFile(
+        game->input_box->str);
+        game->board->size = (sfVector2f) {
+        sfImage_getSize(game->board->image).x,
+        sfImage_getSize(game->board->image).y};
+        sfSprite_setTextureRect(game->board->sprite, (sfIntRect) {
+        0, 0, game->board->size.x, game->board->size.y});
+        game->board->texture = sfTexture_createFromImage(
+        game->board->image, NULL);
+        sfSprite_setTexture(game->board->sprite,
+        game->board->texture, sfTrue);
+    }) : (0);
+}
+
 void event_input_handler(game_t *game)
 {
     if (game->event.type == sfEvtClosed)
@@ -29,11 +48,7 @@ void event_input_handler(game_t *game)
         char c = fetch_char(game->event.key.code);
         manage_str(game, c);
         if (sfKeyboard_isKeyPressed(sfKeyReturn)) {
-            (game->input_box->action == SAVE) ? (sfImage_saveToFile(
-            game->board->image, game->input_box->str)) : (0);
-            (game->input_box->action == LOAD) ? (\
-            game->board->image = sfImage_createFromFile(\
-            game->input_box->str)) : (0);
+            chose_action(game);
             game->input_box->str[0] = '\0';
             game->input_box->action = NO_ACTION;
             game->scene = MAIN;

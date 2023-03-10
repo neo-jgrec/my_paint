@@ -22,6 +22,8 @@ char fetch_char(sfKeyCode key)
         return '.';
     if (key == 48)
         return '.';
+    if (key == 52)
+        return '/';
     return 0;
 }
 

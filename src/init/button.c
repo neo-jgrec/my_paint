@@ -22,6 +22,7 @@ static void init_file_button(game_t *game)
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
         (i == 0) ? button->action = (void *)new_file : 0;
+        (i == 1) ? button->action = (void *)open_file : 0;
         (i == 2) ? button->action = (void *)save_file : 0;
         (i == 3) ? button->action = (void *)button_exit : 0;
         button->state = IDLE;

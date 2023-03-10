@@ -181,6 +181,7 @@
     void about(game_t *game);
     void button_exit(game_t *game);
     void save_file(game_t *game);
+    void open_file(game_t *game);
 
     void help_scene(game_t *game);
     void update_help_scene(game_t *game);
