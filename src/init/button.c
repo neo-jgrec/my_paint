@@ -32,7 +32,8 @@ static void init_file_button(game_t *game)
 
 static void init_edit_button(game_t *game)
 {
-    char *button_name[] = {"Switch Brush", "Eraser", "Color", "Brush Size", NULL};
+    char *button_name[] = {"Switch Brush", "Eraser", "Color", "Brush Size",
+    NULL};
     sfVector2f button_size[] = {{125, 25}, {125, 25}, {125, 25}, {125, 25}};
     sfVector2f button_pos[] = {{75, 25}, {75, 50}, {75, 75}, {75, 100}};
 
@@ -46,6 +47,7 @@ static void init_edit_button(game_t *game)
         sfRectangleShape_setSize(button->shape, button->size);
         (i == 0) ? button->action = (void *)switch_brush : 0;
         (i == 1) ? button->action = (void *)eraser_button : 0;
+        (i == 2) ? button->action = (void *)color_picker : 0;
 
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);

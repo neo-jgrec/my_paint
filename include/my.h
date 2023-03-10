@@ -74,6 +74,7 @@
         MAIN,
         HELP_SCENE,
         INPUT_SCENE,
+        COLOR_SCENE,
         EXIT
     } scene_t;
 
@@ -155,7 +156,8 @@
         wich_panel_t panel;
         about_t *about;
         input_box_t *input_box;
-        char *file_to_open;
+        sfImage *color_picker_image;
+        sfSprite *color_picker_sprite;
     } game_t;
 
     void init_game(game_t *game, char *filepath, int alpha);
@@ -184,6 +186,7 @@
     void open_file(game_t *game);
     void eraser_button(game_t *game);
     void switch_brush(game_t *game);
+    void color_picker(game_t *game);
 
     void help_scene(game_t *game);
     void update_help_scene(game_t *game);
@@ -197,5 +200,9 @@
 
     char fetch_char(sfKeyCode key);
     void manage_str(game_t *game, char c);
+
+    void update_color_scene(game_t *game);
+    void handle_resize(game_t *game);
+    void color_scene(game_t *game);
 
 #endif /* !MY_H_ */

@@ -85,4 +85,7 @@ void init_game(game_t *game, char *filepath, int alpha)
     add_navbar_button(game);
     game->panel = NONE;
     init_input_box(game);
+    game->color_picker_image = sfImage_createFromFile(\
+    "assets/img_colormap.png");
+    game->color_picker_sprite = sfSprite_create();
 }

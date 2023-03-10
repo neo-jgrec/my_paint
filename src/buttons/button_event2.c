@@ -29,16 +29,27 @@ void switch_brush(game_t *game)
         (sfClock_getElapsedTime(game->clock).microseconds > 100000) ? ({
             if (game->board->brush_type == CIRCLE) {
                 game->board->brush_type = RECTANGLE;
-                game->board->brush = create_rectangle_shape((sfVector2f){game->board->size_brush, game->board->size_brush}
+                game->board->brush = create_rectangle_shape((sfVector2f){\
+                game->board->size_brush, game->board->size_brush}
                 , ((game->board->color.a == 0) ? sfBlack : game->board->color));
-                sfRectangleShape_setSize(game->board->brush, (sfVector2f){game->board->size_brush, game->board->size_brush});
+                sfRectangleShape_setSize(game->board->brush,
+                (sfVector2f){game->board->size_brush, game->board->size_brush});
             } else if (game->board->brush_type == RECTANGLE) {
                 game->board->brush_type = CIRCLE;
-                game->board->brush = create_circle_shape(game->board->size_brush, ((game->board->color.a == 0) ? sfBlack : game->board->color));
+                game->board->brush = create_circle_shape(\
+                game->board->size_brush,
+                ((game->board->color.a == 0) ? sfBlack : game->board->color));
             }
             if (game->board->color.a == 0)
                 game->board->color = sfBlack;
             sfClock_restart(game->clock);
         }) : ({});
+    }
+}
+
+void color_picker(game_t *game)
+{
+    if (game->panel == EDIT_PANEL) {
+        game->scene = COLOR_SCENE;
     }
 }
