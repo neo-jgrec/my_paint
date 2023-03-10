@@ -34,6 +34,7 @@ void event_input_handler(game_t *game)
             (game->input_box->action == LOAD) ? (\
             game->board->image = sfImage_createFromFile(\
             game->input_box->str)) : (0);
+            game->input_box->str[0] = '\0';
             game->input_box->action = NO_ACTION;
             game->scene = MAIN;
         }
