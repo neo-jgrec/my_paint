@@ -13,6 +13,7 @@ void open_file(game_t *game)
         game->input_box->action = LOAD;
         game->input_box->title = "Load file";
         game->scene = INPUT_SCENE;
+        game->panel = NONE;
     }
 }
 
@@ -20,6 +21,7 @@ void eraser_button(game_t *game)
 {
     if (game->panel == EDIT_PANEL) {
         game->board->color = sfColor_fromRGBA(255, 255, 255, 0);
+        game->panel = NONE;
     }
 }
 
@@ -50,6 +52,7 @@ void switch_brush(game_t *game)
 void color_picker(game_t *game)
 {
     if (game->panel == EDIT_PANEL) {
+        game->panel = NONE;
         game->scene = COLOR_SCENE;
     }
 }
