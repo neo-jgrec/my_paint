@@ -46,6 +46,7 @@ void switch_brush(game_t *game)
                 game->board->color = sfBlack;
             sfClock_restart(game->clock);
         }) : ({});
+        game->panel = NONE;
     }
 }
 
