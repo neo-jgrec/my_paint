@@ -15,6 +15,13 @@ void event_help_handler(game_t *game)
     game->event.key.code == sfKeyEscape) {
         game->scene = MAIN;
     }
+    if (game->event.type == sfEvtResized) {
+        sfVector2u size = {game->event.size.width, game->event.size.height};
+        sfView *view = sfView_createFromRect((sfFloatRect){0, 0,
+        (float)size.x, (float)size.y});
+        sfRenderWindow_setView(game->window, view);
+        sfView_destroy(view);
+    }
 }
 
 void update_help_scene(game_t *game)
