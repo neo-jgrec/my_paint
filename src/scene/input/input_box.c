@@ -23,8 +23,11 @@ void chose_action(game_t *game)
     (game->input_box->action == SAVE) ? (sfImage_saveToFile(
     game->board->image, game->input_box->str)) : (0);
     (game->input_box->action == LOAD) ? ({
+        sfImage *save = game->board->image;
         game->board->image = sfImage_createFromFile(
         game->input_box->str);
+        (game->board->image == NULL) ?\
+        (game->board->image = save) : (sfImage_destroy(save));
         game->board->size = (sfVector2f) {
         sfImage_getSize(game->board->image).x,
         sfImage_getSize(game->board->image).y};
