@@ -34,11 +34,11 @@ void manage_str(game_t *game, char c)
             (game->input_box->str[0] != 0) ? (game->input_box->str[strlen(
             game->input_box->str) - 1] = 0) : (0);
         } else {
-            (strlen(game->input_box->str) < 20) ? ({
+            (my_strlen(game->input_box->str) < 20) ? ({
                 char *tmp = malloc(sizeof(char) * 2);
                 tmp[0] = c;
                 tmp[1] = 0;
-                game->input_box->str = strcat(game->input_box->str, tmp);
+                game->input_box->str = my_strcat(game->input_box->str, tmp);
                 free(tmp);
             }) : (0);
         }
