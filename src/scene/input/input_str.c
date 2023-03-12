@@ -7,6 +7,27 @@
 
 #include "my.h"
 
+static char fetch_number(sfKeyCode key)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyLShift)) {
+        (key == sfKeyNum0) ? ({return '1';}) : (0);
+        (key == sfKeyNum1) ? ({return '2';}) : (0);
+        (key == sfKeyNum2) ? ({return '3';}) : (0);
+        (key == sfKeyNum3) ? ({return '4';}) : (0);
+        (key == sfKeyNum4) ? ({return '5';}) : (0);
+        (key == sfKeyNum5) ? ({return '6';}) : (0);
+        (key == sfKeyNum6) ? ({return '7';}) : (0);
+        (key == sfKeyNum7) ? ({return '8';}) : (0);
+        (key == sfKeyNum8) ? ({return '9';}) : (0);
+        (key == sfKeyNum9) ? ({return '0';}) : (0);
+    } else {
+        (key == sfKeyNum5) ? ({return '(';}) : (0);
+        (key == sfKeyNum6) ? ({return '-';}) : (0);
+        (key == sfKeyNum8) ? ({return '_';}) : (0);
+    }
+    return -1;
+}
+
 char fetch_char(sfKeyCode key)
 {
     for (int i = 0; i < 26; i++)
@@ -16,14 +37,17 @@ char fetch_char(sfKeyCode key)
         return ' ';
     if (key == sfKeyBack)
         return '\b';
-    if (key == sfKeyNum8)
-        return '_';
     if (key == sfKeyPeriod)
         return '.';
     if (key == 48)
         return '.';
     if (key == 52)
         return '/';
+    if (fetch_number(key) != -1)
+        return fetch_number(key);
+    for (int i = 0; i < 10; i++)
+        if (key == sfKeyNumpad0 + i)
+            return '0' + i;
     return 0;
 }
 

@@ -94,7 +94,8 @@
     typedef enum {
         NO_ACTION,
         SAVE,
-        LOAD
+        LOAD,
+        BRUSH_SIZE_ACTION
     } file_action_t;
 
     typedef struct button_textures_s {
