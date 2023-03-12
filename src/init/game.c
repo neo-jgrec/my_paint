@@ -36,8 +36,8 @@ static void init_image(game_t *game, char *filepath, int alpha)
 static void init_board(game_t *game, char *filepath, int alpha)
 {
     game->board = malloc(sizeof(board_t));
-    game->board->size = (sfVector2f){400, 300};
-    game->board->pos = (sfVector2f){266, 150};
+    game->board->size = (sfVector2f){700, 400};
+    game->board->pos = (sfVector2f){80, 150};
     game->board->scale = (sfVector2f){1, 1};
     game->board->color = sfBlack;
     game->board->size_brush = 10;
