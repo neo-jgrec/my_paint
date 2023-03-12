@@ -32,7 +32,7 @@ static void draw_line_circle(game_t *game, int i, int j, float radius)
 
 void draw_circle_on_sfimage(game_t *game)
 {
-    float radius = sfCircleShape_getRadius((sfCircleShape*)game->board->brush);
+    float radius = BRUSH_SIZE;
     sfColor color = game->board->color;
     sfVector2f pos = game->board->mouse_pos;
     for (int i = 0; i < radius; i++) {

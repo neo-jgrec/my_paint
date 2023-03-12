@@ -56,3 +56,13 @@ void color_picker(game_t *game)
         game->scene = COLOR_SCENE;
     }
 }
+
+void brush_size(game_t *game)
+{
+    if (game->panel == EDIT_PANEL) {
+        game->input_box->action = BRUSH_SIZE_ACTION;
+        game->input_box->title = "Brush size";
+        game->scene = INPUT_SCENE;
+        game->panel = NONE;
+    }
+}

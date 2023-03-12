@@ -48,7 +48,7 @@ static void init_edit_button(game_t *game)
         (i == 0) ? button->action = (void *)switch_brush : 0;
         (i == 1) ? button->action = (void *)eraser_button : 0;
         (i == 2) ? button->action = (void *)color_picker : 0;
-
+        (i == 3) ? button->action = (void *)brush_size : 0;
         button->state = IDLE;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
     }

@@ -38,6 +38,8 @@ void chose_action(game_t *game)
         sfSprite_setTexture(game->board->sprite,
         game->board->texture, sfTrue);
     }) : (0);
+    (game->input_box->action == BRUSH_SIZE_ACTION) ? (\
+    game->board->size_brush = my_atof(game->input_box->str)) : (0);
 }
 
 void event_input_handler(game_t *game)
