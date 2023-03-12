@@ -10,7 +10,7 @@
 void new_file(game_t *game)
 {
     if (game->panel == FILE_PANEL) {
-        game->board->image = sfImage_createFromColor(400, 300, sfWhite);
+        game->board->image = sfImage_createFromColor(700, 400, sfWhite);
         game->board->texture = sfTexture_createFromImage(game->board->image,
         NULL);
         sfSprite_setTexture(game->board->sprite, game->board->texture, sfTrue);
