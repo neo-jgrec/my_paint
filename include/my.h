@@ -63,6 +63,19 @@
     #define BRUSH_COLOR game->board->color
 
     #define VERSION "My_Paint 1.0.0"
+    #define HELP "At execution, you can write :\n\
+\t ./my_paint -f [filepath] -a\n\
+\t\t -f [filepath] : the path to the image you want to edit\n\
+\t\t -a : the alpha channel of the image will be editable\n\
+\n\
+\t The File menu allows you to,\n - create a new image\n - load an image\
+\n - save the current image\n - exit the program.\n\
+\t The Edit menu allows you to,\n - Switch between the different brushes\
+(rectangle and circle)\n - change the size of the brush\n - change the \
+color of the brush\n - switch to the erase mode.\n\
+\t The Help menu allows you to,\n - display the help menu\n - display \
+the about (version).\n\
+"
 
     typedef enum {
         IDLE,

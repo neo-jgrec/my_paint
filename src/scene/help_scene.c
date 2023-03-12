@@ -34,10 +34,16 @@ void help_scene(game_t *game)
 {
     sfRenderWindow_clear(game->window, sfColor_fromRGB(69, 69, 69));
     sfText *text = sfText_create();
-    sfText_setString(text, "HELP");
     sfText_setFont(text, game->font);
-    sfText_setCharacterSize(text, 100);
-    sfText_setPosition(text, (sfVector2f) {100, 100});
+    sfText_setString(text, "Press ESC to go back to the main menu");
+    sfText_setCharacterSize(text, 10);
+    sfText_setPosition(text, (sfVector2f) {
+        sfRenderWindow_getSize(game->window).x / 2 - 100,
+        sfRenderWindow_getSize(game->window).y - 100});
+    sfRenderWindow_drawText(game->window, text, NULL);
+    sfText_setString(text, HELP);
+    sfText_setCharacterSize(text, 20);
+    sfText_setPosition(text, (sfVector2f){10, 10});
     sfRenderWindow_drawText(game->window, text, NULL);
     sfRenderWindow_display(game->window);
     sfText_destroy(text);
