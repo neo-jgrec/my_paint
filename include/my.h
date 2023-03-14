@@ -158,11 +158,6 @@ the about (version).\n\
         char *str;
     } input_box_t;
 
-    typedef struct side_panel_s {
-        bool is_open;
-        sfRectangleShape *shape;
-    } side_panel_t;
-
     typedef struct game_s {
         scene_t scene;
         sfRenderWindow *window;
@@ -177,7 +172,6 @@ the about (version).\n\
         input_box_t *input_box;
         sfImage *color_picker_image;
         sfSprite *color_picker_sprite;
-        side_panel_t *side_panel;
     } game_t;
 
     void init_game(game_t *game, char *filepath, int alpha);
