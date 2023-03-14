@@ -158,12 +158,17 @@ the about (version).\n\
         char *str;
     } input_box_t;
 
+    typedef struct side_panel_s {
+        bool is_open;
+        sfRectangleShape *shape;
+    } side_panel_t;
+
     typedef struct game_s {
         scene_t scene;
         sfRenderWindow *window;
         sfEvent event;
         sfClock *clock;
-        TAILQ_HEAD(buttons, button_s) buttons;
+        TAILQ_HEAD(, button_s) buttons;
         board_t *board;
         sfView *view;
         sfFont *font;
@@ -172,6 +177,7 @@ the about (version).\n\
         input_box_t *input_box;
         sfImage *color_picker_image;
         sfSprite *color_picker_sprite;
+        side_panel_t *side_panel;
     } game_t;
 
     void init_game(game_t *game, char *filepath, int alpha);
@@ -220,5 +226,7 @@ the about (version).\n\
     void update_color_scene(game_t *game);
     void handle_resize(game_t *game);
     void color_scene(game_t *game);
+
+    void init_panel(game_t *game);
 
 #endif /* !MY_H_ */

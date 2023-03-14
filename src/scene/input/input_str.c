@@ -55,7 +55,7 @@ void manage_str(game_t *game, char c)
 {
     if (c != 0) {
         if (c == '\b') {
-            (game->input_box->str[0] != 0) ? (game->input_box->str[strlen(
+            (game->input_box->str[0] != 0) ? (game->input_box->str[my_strlen(
             game->input_box->str) - 1] = 0) : (0);
         } else {
             (my_strlen(game->input_box->str) < 20) ? ({
