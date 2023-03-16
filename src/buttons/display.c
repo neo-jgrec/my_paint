@@ -41,7 +41,6 @@ void display_all_buttons(game_t *game)
             my_strcmp(button->name, "Eraser") == 0))
                 display_button(game, button);
         if (game->panel == HELP_PANEL && (my_strcmp(button->name, "About") == 0
-        || my_strcmp(button->name, "Help.") == 0))
-                display_button(game, button);
+        || my_strcmp(button->name, "Help.") == 0)) display_button(game, button);
     }
 }

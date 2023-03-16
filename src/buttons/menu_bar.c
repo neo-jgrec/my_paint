@@ -54,11 +54,13 @@ static void clicked_action(button_t *button, game_t *game)
             game->panel = HELP_PANEL;
     }
     if (my_strcmp(button->name, "-") == 0) {
-        button->pos = (sfVector2f) {sfRenderWindow_getSize(game->window).x - 50, 0};
+        button->pos = (sfVector2f) {\
+        sfRenderWindow_getSize(game->window).x - 50, 0};
         sfRectangleShape_setPosition(button->shape, button->pos);
     }
     if (my_strcmp(button->name, "+") == 0) {
-        button->pos = (sfVector2f) {sfRenderWindow_getSize(game->window).x - 25, 0};
+        button->pos = (sfVector2f) {\
+        sfRenderWindow_getSize(game->window).x - 25, 0};
         sfRectangleShape_setPosition(button->shape, button->pos);
     }
     if (button->action != NULL && button->state == CLICKED)

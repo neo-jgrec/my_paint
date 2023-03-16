@@ -25,8 +25,10 @@ void draw_on_board(game_t *game)
 {
     sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
     game->board->mouse_pos = (sfVector2f){mouse_pos.x, mouse_pos.y};
-    game->board->mouse_pos.x -= sfSprite_getGlobalBounds(game->board->sprite).left;
-    game->board->mouse_pos.y -= sfSprite_getGlobalBounds(game->board->sprite).top;
+    game->board->mouse_pos.x -= sfSprite_getGlobalBounds(\
+    game->board->sprite).left;
+    game->board->mouse_pos.y -= sfSprite_getGlobalBounds(\
+    game->board->sprite).top;
     game->board->pos = sfSprite_getPosition(game->board->sprite);
 
     if (is_hovering(game->board->pos, game->window, game->board->size)
