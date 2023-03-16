@@ -75,6 +75,9 @@
 color of the brush\n - switch to the erase mode.\n\
 \t The Help menu allows you to,\n - display the help menu\n - display \
 the about (version).\n\
+\n\
+\t If you want to zoom you can, but you can't draw on it.\n\
+\t To redraw the image, you have to zoom out as default.\n\
 "
 
     typedef enum {

@@ -23,14 +23,15 @@ void draw_shape_on_sfimage(game_t *game)
 
 void draw_on_board(game_t *game)
 {
-    game->board->mouse_pos = sfRenderWindow_mapPixelToCoords(game->window,
-    sfMouse_getPositionRenderWindow(game->window), NULL);
-    game->board->mouse_pos.x -= game->board->pos.x;
-    game->board->mouse_pos.y -= game->board->pos.y;
-
+    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
+    game->board->mouse_pos = (sfVector2f){mouse_pos.x, mouse_pos.y};
+    game->board->mouse_pos.x -= sfSprite_getGlobalBounds(game->board->sprite).left;
+    game->board->mouse_pos.y -= sfSprite_getGlobalBounds(game->board->sprite).top;
+    game->board->pos = sfSprite_getPosition(game->board->sprite);
 
     if (is_hovering(game->board->pos, game->window, game->board->size)
-    && sfMouse_isButtonPressed(sfMouseLeft)) {
+    && sfMouse_isButtonPressed(sfMouseLeft) && (game->board->scale.x == 1 &&
+    game->board->scale.y == 1)) {
         draw_shape_on_sfimage(game);
         sfTexture_updateFromImage(game->board->texture,
         IMAGE, 0, 0);

@@ -10,6 +10,8 @@
 int unzoom(game_t *game)
 {
     if (game->board->scale.x > 1 && game->board->scale.y > 1) {
+        game->board->size = (sfVector2f){game->board->size.x + 10,
+        game->board->size.y + 10};
         game->board->scale = (sfVector2f){game->board->scale.x - 0.1,
         game->board->scale.y - 0.1};
         sfSprite_setScale(game->board->sprite, game->board->scale);
@@ -21,6 +23,8 @@ int unzoom(game_t *game)
 int zoom(game_t *game)
 {
     if (game->board->scale.x < 5 && game->board->scale.y < 5) {
+        game->board->size = (sfVector2f){game->board->size.x - 10,
+        game->board->size.y - 10};
         game->board->scale = (sfVector2f){game->board->scale.x + 0.1,
         game->board->scale.y + 0.1};
         sfSprite_setScale(game->board->sprite, game->board->scale);
