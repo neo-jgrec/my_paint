@@ -10,8 +10,6 @@
 static void draw_line_circle(game_t *game, int i, int j, float radius)
 {
     sfVector2f pos = game->board->mouse_pos;
-    pos.x /= game->board->scale.x;
-    pos.y /= game->board->scale.y;
     if (VECT2F_MANHATTAN(pos, game->board->last_pos) > 1) {
         sfVector2f dir = VECT2F_SUB(pos, game->board->last_pos);
         sfVector2f dir_norm = VECT2F_NORMALIZE(dir);
@@ -37,8 +35,6 @@ void draw_circle_on_sfimage(game_t *game)
     float radius = BRUSH_SIZE;
     sfColor color = game->board->color;
     sfVector2f pos = game->board->mouse_pos;
-    pos.x /= game->board->scale.x;
-    pos.y /= game->board->scale.y;
     for (int i = 0; i < radius; i++) {
         for (int j = 0; j < radius; j++) {
             (i * i + j * j <= radius * radius
