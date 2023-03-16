@@ -115,4 +115,5 @@ void add_navbar_button(game_t *game)
     init_file_button(game);
     init_edit_button(game);
     init_help_button(game);
+    init_zoom_unzoom(game);
 }

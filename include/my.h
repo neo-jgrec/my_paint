@@ -201,6 +201,7 @@ the about (version).\n\
     void eraser_button(game_t *game);
     void switch_brush(game_t *game);
     void brush_size(game_t *game);
+    void init_zoom_unzoom(game_t *game);
 
     void color_picker(game_t *game);
 
