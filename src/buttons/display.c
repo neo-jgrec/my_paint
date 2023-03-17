@@ -27,7 +27,7 @@ void display_all_buttons(game_t *game)
     TAILQ_FOREACH(button, &game->buttons, next) {
         if ((my_strcmp(button->name, "File") == 0 || my_strcmp(button->name,
         "Edit") == 0 || my_strcmp(button->name, "Help") == 0 ||
-        my_strcmp(button->name, "-") == 0 || strcmp(button->name, "+") == 0))
+        my_strcmp(button->name, "-") == 0 || my_strcmp(button->name, "+") == 0))
             display_button(game, button);
         if (game->panel == FILE_PANEL &&
             (my_strcmp(button->name, "New") == 0 || my_strcmp(button->name,
