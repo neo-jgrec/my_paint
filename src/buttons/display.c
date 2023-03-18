@@ -31,14 +31,14 @@ void display_all_buttons(game_t *game)
             display_button(game, button);
         if (game->panel == FILE_PANEL &&
             (my_strcmp(button->name, "New") == 0 || my_strcmp(button->name,
-            "Open") == 0 || my_strcmp(button->name, "Save") == 0 ||
-            my_strcmp(button->name, "Exit") == 0))
-                display_button(game, button);
+            "Open") == 0 || my_strcmp(button->name, "Save") == 0 || my_strcmp(\
+            button->name, "Exit") == 0)) display_button(game, button);
         if (game->panel == EDIT_PANEL &&
             (my_strcmp(button->name, "Switch Brush") == 0
             || my_strcmp(button->name, "Color") == 0
-            || my_strcmp(button->name, "Brush Size") == 0 ||
-            my_strcmp(button->name, "Eraser") == 0))
+            || my_strcmp(button->name, "Brush Size") == 0
+            || my_strcmp(button->name, "Eraser") == 0
+            || my_strcmp(button->name, "Side Panel") == 0))
                 display_button(game, button);
         if (game->panel == HELP_PANEL && (my_strcmp(button->name, "About") == 0
         || my_strcmp(button->name, "Help.") == 0)) display_button(game, button);

@@ -33,15 +33,15 @@ static void init_file_button(game_t *game)
 static void init_edit_button(game_t *game)
 {
     char *button_name[] = {"Switch Brush", "Eraser", "Color", "Brush Size",
-    NULL};
-    sfVector2f button_size[] = {{125, 25}, {125, 25}, {125, 25}, {125, 25}};
-    sfVector2f button_pos[] = {{75, 25}, {75, 50}, {75, 75}, {75, 100}};
-
-    for (int i = 0; i < 4; i++) {
+    "Side Panel", NULL};
+    sfVector2f button_size[] = {{125, 25}, {125, 25}, {125, 25}, {125, 25},
+    {125, 25}};
+    sfVector2f button_pos[] = {{75, 25}, {75, 50}, {75, 75}, {75, 100},
+    {75, 125}};
+    for (int i = 0; i < 5; i++) {
         button_t *button = malloc(sizeof(button_t));
-        button->name = button_name[i];
-        button->pos = button_pos[i];
-        button->size = button_size[i];
+        button->name = button_name[i]; button->pos = button_pos[i];
+        button->size = button_size[i]; button->state = IDLE;
         button->shape = sfRectangleShape_create();
         sfRectangleShape_setPosition(button->shape, button->pos);
         sfRectangleShape_setSize(button->shape, button->size);
@@ -49,7 +49,7 @@ static void init_edit_button(game_t *game)
         (i == 1) ? button->action = (void *)eraser_button : 0;
         (i == 2) ? button->action = (void *)color_picker : 0;
         (i == 3) ? button->action = (void *)brush_size : 0;
-        button->state = IDLE;
+        (i == 4) ? button->action = (void *)side_panel : 0;
         TAILQ_INSERT_TAIL(&game->buttons, button, next);
     }
 }

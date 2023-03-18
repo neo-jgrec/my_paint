@@ -164,8 +164,8 @@ the about (version).\n\
     typedef struct game_s {
         scene_t scene;
         sfRenderWindow *window;
+        sfRenderWindow *panel_window;
         sfEvent event;
-        sfClock *clock;
         TAILQ_HEAD(, button_s) buttons;
         board_t *board;
         sfView *view;
@@ -175,6 +175,7 @@ the about (version).\n\
         input_box_t *input_box;
         sfImage *color_picker_image;
         sfSprite *color_picker_sprite;
+        bool is_panel;
     } game_t;
 
     void init_game(game_t *game, char *filepath, int alpha);
@@ -201,6 +202,7 @@ the about (version).\n\
     void button_exit(game_t *game);
     void save_file(game_t *game);
     void open_file(game_t *game);
+    int side_panel(game_t *game);
     void eraser_button(game_t *game);
     void switch_brush(game_t *game);
     void brush_size(game_t *game);
@@ -225,6 +227,7 @@ the about (version).\n\
     void handle_resize(game_t *game);
     void color_scene(game_t *game);
 
-    void init_panel(game_t *game);
+    void add_panel_button(game_t *game);
+    void draw_panel(game_t *game);
 
 #endif /* !MY_H_ */

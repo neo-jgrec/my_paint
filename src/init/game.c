@@ -76,7 +76,6 @@ void init_game(game_t *game, char *filepath, int alpha)
     sfView_setSize(game->view, (sfVector2f){800, 600});
     sfView_setCenter(game->view, (sfVector2f){400, 300});
     sfRenderWindow_setView(game->window, game->view);
-    game->clock = sfClock_create();
     sfRenderWindow_setFramerateLimit(game->window, 60);
     sfRenderWindow_setVerticalSyncEnabled(game->window, sfTrue);
     sfRenderWindow_setKeyRepeatEnabled(game->window, sfFalse);
@@ -88,4 +87,5 @@ void init_game(game_t *game, char *filepath, int alpha)
     game->color_picker_image = sfImage_createFromFile(\
     "assets/img_colormap.png");
     game->color_picker_sprite = sfSprite_create();
+    add_panel_button(game);
 }

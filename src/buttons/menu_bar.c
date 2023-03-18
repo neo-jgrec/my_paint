@@ -72,6 +72,10 @@ void button_action(game_t *game)
     button_t *button;
 
     TAILQ_FOREACH(button, &game->buttons, next) {
+        if (my_strcmp(button->name, "Change Brush") == 0
+        || my_strcmp(button->name, "Change Color") == 0
+        || my_strcmp(button->name, "Change Size") == 0)
+            continue;
         change_button_state(button, game);
         if (button->state == HOVER)
             sfRectangleShape_setFillColor(button->shape, sfColor_fromRGB
