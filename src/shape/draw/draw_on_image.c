@@ -33,7 +33,7 @@ void draw_on_board(game_t *game)
 
     if (is_hovering(game->board->pos, game->window, game->board->size)
     && sfMouse_isButtonPressed(sfMouseLeft) && (game->board->scale.x == 1 &&
-    game->board->scale.y == 1)) {
+    game->board->scale.y <= 1.5)) {
         draw_shape_on_sfimage(game);
         sfTexture_updateFromImage(game->board->texture,
         IMAGE, 0, 0);
