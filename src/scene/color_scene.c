@@ -23,11 +23,11 @@ void event_color_handler(game_t *game)
         if (mouse_posf.x >= sprite_pos.x && mouse_posf.x <= sprite_pos.x + \
         sprite_size.x && mouse_posf.y >= sprite_pos.y
         && mouse_posf.y <= sprite_pos.y + sprite_size.y) {
-            game->board->color = sfImage_getPixel(game->color_picker_image, \
+            sfColor color = sfImage_getPixel(game->color_picker_image, \
             mouse_pos.x - sprite_pos.x, mouse_pos.y - sprite_pos.y);
+            game->board->color = (color.a == 0) ? game->board->color : color;
         }
     }
-
     handle_resize(game);
 }
 
@@ -50,7 +50,7 @@ void draw_text(game_t *game, sfImage *image, sfSprite *sprite)
         text).height * 2 - sfImage_getSize(image).y / 2});
     sfText_setColor(text, game->board->color);
     sfRenderWindow_drawText(game->window, text, NULL);
-    sfText_setString(text, "Press escape/enter to go back");
+    sfText_setString(text, "Press Enter to validate");
     sfText_setPosition(text, (sfVector2f){
         sfRenderWindow_getSize(game->window).x / 2 - sfText_getLocalBounds(\
         text).width / 2,
