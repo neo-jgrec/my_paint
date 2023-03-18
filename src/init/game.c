@@ -36,7 +36,10 @@ static void init_image(game_t *game, char *filepath, int alpha)
 static void init_board(game_t *game, char *filepath, int alpha)
 {
     game->board = malloc(sizeof(board_t));
-    game->board->size = (sfVector2f){sfRenderWindow_getSize(game->window).x - sfRenderWindow_getSize(game->window).x / 10, sfRenderWindow_getSize(game->window).y - sfRenderWindow_getSize(game->window).y / 4};
+    game->board->size = (sfVector2f){sfRenderWindow_getSize(\
+    game->window).x - sfRenderWindow_getSize(game->window).x / 10,
+    sfRenderWindow_getSize(game->window).y - sfRenderWindow_getSize(\
+    game->window).y / 4};
     game->board->pos = (sfVector2f){80, 150};
     game->board->scale = (sfVector2f){1, 1};
     game->board->color = sfBlack;
