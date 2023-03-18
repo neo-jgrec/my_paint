@@ -6,6 +6,8 @@
 */
 
 #include "my.h"
+void message_brush_input(game_t *game);
+void handle_brush_overload(game_t *game);
 
 void handle_resize(game_t *game)
 {
@@ -38,8 +40,7 @@ void chose_action(game_t *game)
         sfSprite_setTexture(game->board->sprite,
         game->board->texture, sfTrue);
     }) : (0);
-    (game->input_box->action == BRUSH_SIZE_ACTION) ? (\
-    game->board->size_brush = my_atof(game->input_box->str)) : (0);
+    handle_brush_overload(game);
 }
 
 void event_input_handler(game_t *game)
@@ -77,7 +78,6 @@ void input_scene(game_t *game)
         sfRenderWindow_getSize(game->window).x / 2 - sfText_getGlobalBounds\
         (game->input_box->text).width / 2, 210});
     sfRenderWindow_drawText(game->window, game->input_box->text, NULL);
-
     sfText_setString(game->input_box->text, "Press enter to save");
     sfText_setPosition(game->input_box->text, (sfVector2f) {
         sfRenderWindow_getSize(game->window).x / 2 - sfText_getGlobalBounds\
@@ -88,6 +88,6 @@ void input_scene(game_t *game)
         sfRenderWindow_getSize(game->window).x / 2 - sfText_getGlobalBounds\
         (game->input_box->text).width / 2, 350});
     sfRenderWindow_drawText(game->window, game->input_box->text, NULL);
-
+    message_brush_input(game);
     sfRenderWindow_display(game->window);
 }
