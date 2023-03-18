@@ -36,7 +36,7 @@ static void init_image(game_t *game, char *filepath, int alpha)
 static void init_board(game_t *game, char *filepath, int alpha)
 {
     game->board = malloc(sizeof(board_t));
-    game->board->size = (sfVector2f){700, 400};
+    game->board->size = (sfVector2f){sfRenderWindow_getSize(game->window).x - sfRenderWindow_getSize(game->window).x / 10, sfRenderWindow_getSize(game->window).y - sfRenderWindow_getSize(game->window).y / 4};
     game->board->pos = (sfVector2f){80, 150};
     game->board->scale = (sfVector2f){1, 1};
     game->board->color = sfBlack;
@@ -70,8 +70,8 @@ void init_game(game_t *game, char *filepath, int alpha)
 {
     game->font = sfFont_createFromFile("assets/JetBrainsMono-Medium.ttf");
     game->scene = MAIN; game->panel = NONE;
-    game->window = sfRenderWindow_create((sfVideoMode){800, 600, 32},
-    "my_paint", sfResize | sfClose, NULL);
+    game->window = sfRenderWindow_create((sfVideoMode){1000, 700, 32}, \
+    "My Paint", sfClose | sfResize, NULL);
     game->view = sfView_create();
     sfView_setSize(game->view, (sfVector2f){800, 600});
     sfView_setCenter(game->view, (sfVector2f){400, 300});
