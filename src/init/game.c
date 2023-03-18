@@ -69,20 +69,20 @@ static void init_input_box(game_t *game)
 void init_game(game_t *game, char *filepath, int alpha)
 {
     game->font = sfFont_createFromFile("assets/JetBrainsMono-Medium.ttf");
-    game->scene = MAIN;
+    game->scene = MAIN; game->panel = NONE;
     game->window = sfRenderWindow_create((sfVideoMode){800, 600, 32},
     "my_paint", sfResize | sfClose, NULL);
     game->view = sfView_create();
     sfView_setSize(game->view, (sfVector2f){800, 600});
     sfView_setCenter(game->view, (sfVector2f){400, 300});
     sfRenderWindow_setView(game->window, game->view);
+    game->clock = sfClock_create();
     sfRenderWindow_setFramerateLimit(game->window, 60);
     sfRenderWindow_setVerticalSyncEnabled(game->window, sfTrue);
     sfRenderWindow_setKeyRepeatEnabled(game->window, sfFalse);
     init_board(game, filepath, alpha);
     TAILQ_INIT(&game->buttons);
     add_navbar_button(game);
-    game->panel = NONE;
     init_input_box(game);
     game->color_picker_image = sfImage_createFromFile(\
     "assets/img_colormap.png");

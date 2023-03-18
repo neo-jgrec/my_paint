@@ -166,6 +166,7 @@ the about (version).\n\
         sfRenderWindow *window;
         sfRenderWindow *panel_window;
         sfEvent event;
+        sfClock *clock;
         TAILQ_HEAD(, button_s) buttons;
         board_t *board;
         sfView *view;
