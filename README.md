@@ -3,6 +3,7 @@
 
 You can write ```./my_paint``` in your terminal to launch the gme.
 If you want to launch the app with a custom file at start, you can write ```./my_paint -f <file_path>```.
+You can also add a ```-a``` flag to activate the alpha-channel.
 
 ### THE APP
 The app is a simple paint app.
