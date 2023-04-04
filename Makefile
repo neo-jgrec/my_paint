@@ -1,14 +1,19 @@
 ##
 ## @neo-jgrec , 2022
-## B-MUL-100-REN-1-1-myradar-jean-yanis.jeffroy
+## paint
 ## File description:
 ## Makefile
 ##
 
+include src/buttons/buttons.mk
+include src/init/init.mk
+include src/scene/scene.mk
+include src/shape/shape.mk
+
 PROJECT_NAME			=	my_paint
 NAME					=	my_paint
 
-SRC 					= 	$(shell find src/ -name '*.c')
+SRC 					+= 	src/main.c
 
 BUILD_DIR				=	build
 OBJ						=	$(SRC:%.c=$(BUILD_DIR)/%.o)
