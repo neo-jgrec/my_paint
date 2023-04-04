@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** @neo-jgrec && @DiaboloAB, 2022
 ** printxchar
 ** File description:
 ** printxchar

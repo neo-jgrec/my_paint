@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** @neo-jgrec && @DiaboloAB, 2022
 ** B-MUL-100-REN-1-1-myradar-jean-yanis.jeffroy
 ** File description:
 ** my

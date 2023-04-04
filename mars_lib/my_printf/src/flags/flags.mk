@@ -1,5 +1,5 @@
 ##
-## EPITECH PROJECT, 2022
+## @neo-jgrec , 2022
 ## makefile
 ## File description:
 ## makefile

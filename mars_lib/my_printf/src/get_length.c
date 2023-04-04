@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** @neo-jgrec && @DiaboloAB, 2022
 ** my_get_lengthfields
 ** File description:
 ** my_getlengthfield

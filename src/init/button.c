@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2023
+** @neo-jgrec, 2023
 ** paint
 ** File description:
 ** button
